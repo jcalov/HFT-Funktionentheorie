@@ -1,0 +1,259 @@
+%\ProvidesPackage{StyleSkript}[2013/04/10 v1.0 Styledefinitionen]
+%
+%%------------------------------------------------------------------------------------------------------------------
+%%Befehle
+%%Neudefinitionen
+%\renewcommand*\thesection{\arabic{section}}							%Num. mit $-Zeichen
+%\renewcommand*\thesubsection{\arabic{section}.\arabic{subsection}}		%Normale Num.
+%\makeatletter\renewcommand*{\@pnumwidth}{3em}\makeatother				%Num. auf 3 Stellen erhöhen
+%
+%%Definitionen
+%\newcommand{\ProfName}[3]{Prof. #1 #2 #3}								%Name des Dozenten
+%\newcommand{\Studiengang}[1]{#1}										%Studiengang
+%\newcommand{\Fakultaet}{Fakultät VIM}									%Fakultät
+%\newcommand{\HFT}[1][HfT Stuttgart]{#1}									%Hochschule
+%\newcommand{\UebungNr}[1]{Übungsblatt #1}								%Nummer des Übungsblatts
+%\newcommand{\Semester}[2]{#1 #2}										%SS/WS
+%\newcommand{\Mathematik}[1]{Ingenieursmathematik #1}					%Ing.-Mathe 1,2, ...
+%\newcommand{\AufgabenNummer}[1]{\setcounter{auf}{#1}}					%Aufgabennummer
+%\newcommand{\Themen}[1]{\textbf{Themen:} #1 \\}							%Themen des Aufgabenblatts
+%\newcommand{\Thema}[1]{\textbf{Thema:} #1 \\}							%Thema des Aufgabenblatts
+
+%------------------------------------------------------------------------------------------------------------------
+%Mengensymbole und Zeichen
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\N}{\mathbb{N}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\Z}{\mathbb{Z}}
+\renewcommand{\mod}{\text{mod\,}}
+
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+
+\newcommand*{\blank}{\ \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\ }
+\definecolor{gruen}{rgb}{0,.39,0}
+\newcommand{\begriff}[1]{\textcolor{gruen}{\textbf{#1}}}
+\newcommand{\VL}[2]{
+	\marginpar{\rule{5cm}{0.4pt}}
+	\marginpar{\scriptsize{VL#1, #2}}
+}
+\newcommand*{\vertchar}[2][0pt]{%
+  \tikz[
+    inner sep=0pt,
+    shorten >=-.15ex,
+    shorten <=-.15ex,
+    line cap=round,
+    baseline=(c.base),
+  ]\draw
+    (0,0) node (c) {#2}
+    ($(c.south)+(#1,0)$) -- ($(c.north)+(#1,0)$);%
+}
+\newcommand{\raster}[1]{
+\begin{tikzpicture}
+  %\draw[step=0.5cm,color=gray] (0,0) grid (18cm, #1 cm);
+	\draw[step=0.5cm,color=gray] (0,0) grid (10cm, 0.5 cm);
+\end{tikzpicture}
+}
+
+
+%%------------------------------------------------------------------------------------------------------------------
+%%Kopf- und Fußzeile
+%\usepackage{fancyhdr}													%Paket für Fancyhdr
+%\fancyhead{}
+%\lhead{\footnotesize{\leftmark}}
+%\chead{}
+%\rhead{\footnotesize{\thepage}}
+%\lfoot{}
+%\cfoot{}
+%\rfoot{}
+%
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0pt}
+%\pagestyle{fancy}
+%\parindent0cm
+
+%------------------------------------------------------------------------------------------------------------------
+%Umgebungen
+\usepackage{amsthm}     												%Beweise und Sätze
+\usepackage{shadethm}													%hinterlegte sätze
+\usepackage{color}														%RGB-Farbpaket
+
+%Erscheinungsbild
+\newtheoremstyle{style}
+{0.5cm}              					%Space above
+{0.5cm}              					%Space below
+{}                      				%Body font: original {\normalfont}
+{}                      				%Indent amount (empty = no indent,%\parindent = paraindent)
+{\normalfont\bfseries}  				%Thm head font original
+{:}{\newline}
+{{\normalfont\bfseries \thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}}
+\theoremstyle{style}
+
+
+%\newtheorem{definition}{Definition}[section]
+%\newtheorem{satz}{Satz}[section]
+%\newtheorem{lemma}{Lemma}[section]
+%\newtheorem{korollar}{Korollar}[section]
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+
+% Satz
+\newcounter{satz}[section] \setcounter{satz}{0}
+\newcommand{\satztitel}{\arabic{section}.\arabic{satz}}
+\newenvironment{satz}[1][]{%
+	\refstepcounter{satz}%
+	\ifstrempty{#1}%
+	{\mdfsetup{%
+			frametitle={%
+				\tikz[baseline=(current bounding box.east),outer sep=0pt]
+				\node[anchor=east,rectangle,fill=orange!75]
+				{\strut Satz~\satztitel};}}
+	}%
+	{\mdfsetup{%
+			frametitle={%
+				\tikz[baseline=(current bounding box.east),outer sep=0pt]
+				\node[anchor=east,rectangle,fill=orange!75]
+				{\strut Satz~\satztitel:~#1};}}%
+	}%
+	\mdfsetup{innertopmargin=-3pt,linecolor=orange!75,%
+		linewidth=2pt,topline=true,backgroundcolor=none,
+		frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+	}
+	\begin{mdframed}[]
+		\relax
+	}
+	{
+	\end{mdframed}
+}
+% Lemma
+\newcounter{lemma}[section] \setcounter{lemma}{0}
+\newcommand{\lemmatitel}{\arabic{section}.\arabic{lemma}}
+\newenvironment{lemma}[1][]{%
+	\refstepcounter{lemma}%
+	\ifstrempty{#1}%
+	{\mdfsetup{%
+			frametitle={%
+				\tikz[baseline=(current bounding box.east),outer sep=0pt]
+				\node[anchor=east,rectangle,fill=orange!50]
+				{\strut Lemma~\lemmatitel};}}
+	}%
+	{\mdfsetup{%
+			frametitle={%
+				\tikz[baseline=(current bounding box.east),outer sep=0pt]
+				\node[anchor=east,rectangle,fill=orange!50]
+				{\strut Lemma~\lemmatitel:~#1};}}%
+	}%
+	\mdfsetup{innertopmargin=-3pt,linecolor=orange!50,%
+		linewidth=2pt,topline=true,backgroundcolor=none,
+		frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+	}
+	\begin{mdframed}[]
+		\relax
+	}
+	{
+	\end{mdframed}
+}
+% Korollar
+\newcounter{korollar}[section] \setcounter{korollar}{0}
+\newcommand{\korollartitel}{\arabic{section}.\arabic{korollar}}
+\newenvironment{korollar}[1][]{%
+	\refstepcounter{korollar}%
+	\ifstrempty{#1}%
+	{\mdfsetup{%
+			frametitle={%
+				\tikz[baseline=(current bounding box.east),outer sep=0pt]
+				\node[anchor=east,rectangle,fill=orange!25]
+				{\strut Korollar~\korollartitel};}}
+	}%
+	{\mdfsetup{%
+			frametitle={%
+				\tikz[baseline=(current bounding box.east),outer sep=0pt]
+				\node[anchor=east,rectangle,fill=orange!25]
+				{\strut Korollar~\korollartitel:~#1};}}%
+	}%
+	\mdfsetup{innertopmargin=-3pt,linecolor=orange!25,%
+		linewidth=2pt,topline=true,backgroundcolor=none,
+		frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+	}
+	\begin{mdframed}[]
+		\relax
+	}
+	{
+	\end{mdframed}
+}
+
+% Definition
+\newcounter{definition}[section] \setcounter{definition}{0}
+\newcommand{\definitiontitel}{\arabic{section}.\arabic{definition}}
+\newenvironment{definition}[1][]{%
+	\refstepcounter{definition}%
+	\ifstrempty{#1}%
+	{\mdfsetup{%
+			frametitle={%
+				\tikz[baseline=(current bounding box.east),outer sep=0pt]
+				\node[anchor=east,rectangle,fill=yellow!75]
+				{\strut Definition~\definitiontitel};}}
+	}%
+	{\mdfsetup{%
+			frametitle={%
+				\tikz[baseline=(current bounding box.east),outer sep=0pt]
+				\node[anchor=east,rectangle,fill=yellow!75]
+				{\strut Definition~\definitiontitel:~#1};}}%
+	}%
+	\mdfsetup{innertopmargin=-2pt,linecolor=yellow!75,%
+		linewidth=2pt,topline=true,backgroundcolor=none,
+		frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+	}
+	\begin{mdframed}[]\relax%
+		%		\label{#2}
+	}{\end{mdframed}
+}
+
+
+%Beispiel
+\newshadetheorem{bsp}{Beispiel}
+\newenvironment{beispiel}[1][]
+{
+	\definecolor{shadethmcolor}{rgb}{1.0,1.0,1.0}%
+	\definecolor{shaderulecolor}{rgb}{0.0,0.0,0.0}%
+	\setlength{\shadeboxrule}{0pt}%
+	\begin{bsp}[#1]%\hspace*{1mm}%
+	}
+	{\end{bsp}}
+
+%Beispiel
+\newshadetheorem{bsps}[bsp]{Beispiele}
+\newenvironment{beispiele}[1][]
+{
+	\definecolor{shadethmcolor}{rgb}{1.0,1.0,1.0}%
+	\definecolor{shaderulecolor}{rgb}{0.0,0.0,0.0}%
+	\setlength{\shadeboxrule}{0pt}%
+	\begin{bsps}[#1]%\hspace*{1mm}%
+	}
+	{\end{bsps}}
+
+%Bemerkung
+\newshadetheorem{bemerk}{Bemerkung}
+\newenvironment{bem}[1][]
+{
+	\definecolor{shadethmcolor}{rgb}{1.0,1.0,1.0}%
+	\definecolor{shaderulecolor}{rgb}{1.0,1.0,1.0}%
+	\setlength{\shadeboxrule}{0pt}%
+	\begin{bemerk}[#1]%\hspace*{1mm}%
+	}
+	{\end{bemerk}}
+
+%Bemerkungen
+\newshadetheorem{bemerks}[bemerk]{Bemerkungen}
+\newenvironment{bemerkungen}[1][]
+{
+	\definecolor{shadethmcolor}{rgb}{1.0,1.0,1.0}%
+	\definecolor{shaderulecolor}{rgb}{1.0,1.0,1.0}%
+	\setlength{\shadeboxrule}{0pt}%
+	\begin{bemerks}[#1]%\hspace*{1mm}%
+	}
+	{\end{bemerks}}
+
+\newtheorem*{bew}{\textit{Begr\"undung}}

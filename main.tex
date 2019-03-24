@@ -1,0 +1,317 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cheatsheet Funktionentheorie
+% Jens Calov
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[
+	% Groesse der Standardschrift
+	fontsize=8pt,
+	% Ausgabeformat
+	a4paper,
+	% Einseitiger Ausdruck (Ränder immer gleich)
+	% oneside,
+	% Formeln nicht zentriert
+	%	fleqn,
+	% Kein Punkt nach Kapitelnummer
+	numbers=noenddot,
+	landscape,
+% Dokumentenklasse
+% http://www.kkittel.de/wiki/doku.php?id=grundlegende_einstellungen:dokumentenklassen
+]{scrartcl}
+
+% Einzug der jeweils ersten Zeile verhindern
+\setlength{\parindent}{0em}
+
+\usepackage[nosf]{kpfonts}
+\usepackage[t1]{sourcesanspro}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage[top=8.5mm,bottom=0mm,left=0mm,right=0mm]{geometry}
+% \usepackage[framemethod=tikz]{mdframed}
+\usepackage{microtype}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Direkteingabe von Umlauten ermöglichen
+\usepackage[utf8]{inputenc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bessere Schriftart , auch für PDF
+\usepackage{lmodern}
+%\usepackage[light,condensed,math]{iwona}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Farbunterstützung
+\usepackage[dvipsnames]{xcolor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deutsche Anpassungen/Übersetzungen einbinden
+\usepackage[ngerman]{babel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Erweiterte Mathematik-Möglichkeiten
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Für Formulierung von if-then-else-Anweisungen
+\usepackage{ifthen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Zum Einbinden von PDF als Titelblatt
+\usepackage{pdfpages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abkürzungen
+\usepackage[printonlyused]{acronym}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Todos
+\usepackage{todonotes}
+\presetkeys{todonotes}{backgroundcolor=Lavender}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Verlinktes Inhaltsverzeichnis, Links allgemein, PDF-Properties
+\usepackage{hyperref}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Erweiterte Tabellen
+\usepackage{tabularx}
+\usepackage{longtable}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Literaturangaben (Biblatex mit Biber)
+\usepackage[backend=biber,style=alphabetic,bibstyle=authoryear]{biblatex}
+% begin: excerpt from `alphabetic.bbx'
+\DeclareFieldFormat{labelalphawidth}{\mkbibbrackets{#1}}
+
+\defbibenvironment{bibliography}
+{\list
+	{\printtext[labelalphawidth]{%
+			\printfield{prefixnumber}%
+			\printfield{labelalpha}%
+			\printfield{extraalpha}}}
+	{\setlength{\labelwidth}{\labelalphawidth}%
+		\setlength{\leftmargin}{\labelwidth}%
+		\setlength{\labelsep}{\biblabelsep}%
+		\addtolength{\leftmargin}{\labelsep}%
+		\setlength{\itemsep}{\bibitemsep}%
+		\setlength{\parsep}{\bibparsep}}%
+	\renewcommand*{\makelabel}[1]{##1\hss}}
+{\endlist}
+{\item}
+% end: excerpt from `alphabetic.bbx'
+
+% https://golatex.de/strich-statt-autor-bei-doppelnennung-t7001.html
+\ExecuteBibliographyOptions{dashed=false}
+
+\DefineBibliographyStrings{ngerman}{%
+	bibliography={Literaturverzeichnis}% Deutsche Überschrift definieren
+}
+
+% https://golatex.de/biblatex-ausgabetext-von-urldate-aendern-t10330.html
+\DefineBibliographyStrings{german}{%
+	urlseen = {aufgerufen am},
+}
+% csquotes ist von babel empfohlen
+\usepackage{csquotes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf- und Fußzeilen
+\usepackage[autooneside=false,automark]{scrlayer-scrpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% git info as watermark
+\usepackage{jgitinfo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Äufzählungen nicht nur mit Nummern
+\usepackage{enumitem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{calc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Für gestrichelte Linien in Tabellen mit \hdashline
+\usepackage{arydshln}
+% Für Widerspruchsblitz \lightning
+\usepackage{stmaryrd}
+
+
+
+
+
+% Boolesche Variablen zur Verwendung in der Konfiguration
+\newboolean{statusEntwurf}
+\newboolean{titelblattPDF}
+\newboolean{trennlinieKopfzeile}
+\newboolean{trennlinieFusszeile}
+\newboolean{kopfFussZeileAuchBeiKapitelAnfang}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% KONFIGURATION ANFANG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Entwurf ja/nein
+\setboolean{statusEntwurf}{false}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Autor
+\newcommand{\autor}{Jens Calov}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titel der Arbeit
+\newcommand{\titelArbeit}{Algebra -- WS 2018/2019}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Untertitel (wenn nicht benötigt, auskommentieren)
+\subtitle{Definitionen, Sätze, Lemmata}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Betreff (wenn nicht benötigt, auskommentieren)
+% \subject{Mitschrift der Vorlesung}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Datum
+\date{\today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Eigenes Titelblatt als PDF
+% muss "Titelblatt.pdf" heißen und im Ordner ./content liegen
+\setboolean{titelblattPDF}{false}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf- und Fußzeile (für einseitiges Layout)
+\addtokomafont{pagenumber}{\sffamily}
+\newcommand{\headLeft}{\textsf{\autor\ \textcolor{gray!37}{$\vert$ Stand: \gitCommitterDate\ $\vert$ Git-Commit: \gitAbbrevHash\ \jgitinfoRelease}}}
+\newcommand{\headCenter}{\textsf{\titelArbeit}}
+\newcommand{\headRight}{\textsf{Seite \pagemark}}
+\newcommand{\footLeft}{}
+\newcommand{\footCenter}{}
+\newcommand{\footRight}{}
+\setboolean{trennlinieKopfzeile}{true}
+\setboolean{trennlinieFusszeile}{false}
+\setboolean{kopfFussZeileAuchBeiKapitelAnfang}{true} % EMPFEHLUNG: false
+% Variablen:
+%   \pagemark (aktuelle Seitenzahl)
+%   \leftmark (Aktuelles Kapitel/chapter)
+%   \rightmark (Aktueller Abschnitt/section falls vorhanden, sonst akt. Kapitel)
+%   \autor (Name des Autors)
+%   \titelArbeit ()Titel der Arbeit)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Keywords für PDF-Eigenschaften
+\newcommand{\pdfKeywords}{\autor, Algebra, Bachelor, Paul-Georg Becker, Bachelorthesis, Hochschule f\"ur Technik Stuttgart, Mathematik}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% KONFIGURATION ENDE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titelseite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\titelArbeit}
+\author{\autor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Verlinktes Inhaltsverzeichnis, PDF-Eigenschaften
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter % um @-Variablen nutzen zu können
+\hypersetup{
+	colorlinks,
+	pdfpagelabels,
+	pdfstartview = FitH,
+	bookmarksopen = true,
+	bookmarksnumbered = true,
+	linkcolor = black,
+	urlcolor = blue,
+	plainpages = false,
+	%	hypertexnames = false,
+	citecolor = black,
+	pdftitle = \@title,
+	pdfauthor = \@author,
+	pdfsubject=\@subject,
+	pdfkeywords={\pdfKeywords}
+}
+\makeatother % @-Variablen wieder deaktivieren
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Wasserzeichen einblenden falls es sich um einen Entwurf handelt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifthenelse{
+	\boolean{statusEntwurf}
+	}{
+		\usepackage{draftwatermark}
+		\SetWatermarkFontSize{50pt}
+		\SetWatermarkText{ENTWURF \today}
+	}{
+
+	}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf- und Fußzeile
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lohead{\headLeft}
+\cohead{\headCenter}
+\rohead{\headRight}
+\lofoot{\footLeft}
+\cofoot{\footCenter}
+\rofoot{\footRight}
+\ifthenelse{
+	\boolean{trennlinieKopfzeile}
+	}{
+		\KOMAoption{headsepline}{true}
+	}{
+		\KOMAoption{headsepline}{false}
+	}
+\ifthenelse{
+	\boolean{trennlinieFusszeile}
+	}{
+		\KOMAoption{footsepline}{true}
+	}{
+		\KOMAoption{footsepline}{false}
+	}
+\ifthenelse{
+	\boolean{kopfFussZeileAuchBeiKapitelAnfang}
+	}{
+		% \renewcommand{\chapterpagestyle}{scrheadings}
+	}{
+
+	}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+% Literaturdatei laden
+\addbibresource{./content/other/bib.bib}
+
+% StyleSkript von Kostas für Definitionen, Sätze, ... (angepasst)
+\input{./StyleSkript.sty}
+
+
+\begin{document}
+
+	\begin{multicols*}{3}
+		\input{./content/chapters/ch01}
+		% \vfill\null
+		% \columnbreak
+		\input{./content/chapters/ch02}
+		% \vfill\null
+		% \columnbreak
+		\input{./content/chapters/ch03}
+		% \vfill\null
+		% \columnbreak
+		\input{./content/chapters/ch04}
+		% \vfill\null
+		% \columnbreak
+		\input{./content/chapters/ch05}
+	\end{multicols*}
+
+\end{document}

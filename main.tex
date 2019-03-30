@@ -9,210 +9,40 @@
 	fontsize=8pt,
 	% Ausgabeformat
 	a4paper,
-	% Einseitiger Ausdruck (Ränder immer gleich)
-	% oneside,
-	% Formeln nicht zentriert
-	%	fleqn,
 	% Kein Punkt nach Kapitelnummer
 	numbers=noenddot,
-	landscape,
-% Dokumentenklasse
-% http://www.kkittel.de/wiki/doku.php?id=grundlegende_einstellungen:dokumentenklassen
 ]{scrartcl}
 
-% Einzug der jeweils ersten Zeile verhindern
-\setlength{\parindent}{0em}
 
-\usepackage[nosf]{kpfonts}
-\usepackage[t1]{sourcesanspro}
-\usepackage{multicol}
-\usepackage{wrapfig}
-\usepackage[top=8.5mm,bottom=0mm,left=0mm,right=0mm]{geometry}
-% \usepackage[framemethod=tikz]{mdframed}
-\usepackage{microtype}
+\newcommand{\autor}{Jens Calov}
+\newcommand{\titelArbeit}{Funktionentheorie -- Sommersemester 2019}
+\title{\titelArbeit}
+\author{\autor}
+\date{\today}
 
 
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PACKAGES
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Direkteingabe von Umlauten ermöglichen
+\usepackage[top=8.5mm,bottom=11.5mm,left=0mm,right=0mm, twocolumn]{geometry}
 \usepackage[utf8]{inputenc}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Bessere Schriftart , auch für PDF
 \usepackage{lmodern}
-%\usepackage[light,condensed,math]{iwona}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Farbunterstützung
 \usepackage[dvipsnames]{xcolor}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Deutsche Anpassungen/Übersetzungen einbinden
 \usepackage[ngerman]{babel}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Erweiterte Mathematik-Möglichkeiten
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{amsmath}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Für Formulierung von if-then-else-Anweisungen
-\usepackage{ifthen}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Zum Einbinden von PDF als Titelblatt
-\usepackage{pdfpages}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Abkürzungen
-\usepackage[printonlyused]{acronym}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Todos
-\usepackage{todonotes}
-\presetkeys{todonotes}{backgroundcolor=Lavender}{}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Verlinktes Inhaltsverzeichnis, Links allgemein, PDF-Properties
+\usepackage{mathtools}
 \usepackage{hyperref}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Erweiterte Tabellen
-\usepackage{tabularx}
-\usepackage{longtable}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Literaturangaben (Biblatex mit Biber)
-\usepackage[backend=biber,style=alphabetic,bibstyle=authoryear]{biblatex}
-% begin: excerpt from `alphabetic.bbx'
-\DeclareFieldFormat{labelalphawidth}{\mkbibbrackets{#1}}
-
-\defbibenvironment{bibliography}
-{\list
-	{\printtext[labelalphawidth]{%
-			\printfield{prefixnumber}%
-			\printfield{labelalpha}%
-			\printfield{extraalpha}}}
-	{\setlength{\labelwidth}{\labelalphawidth}%
-		\setlength{\leftmargin}{\labelwidth}%
-		\setlength{\labelsep}{\biblabelsep}%
-		\addtolength{\leftmargin}{\labelsep}%
-		\setlength{\itemsep}{\bibitemsep}%
-		\setlength{\parsep}{\bibparsep}}%
-	\renewcommand*{\makelabel}[1]{##1\hss}}
-{\endlist}
-{\item}
-% end: excerpt from `alphabetic.bbx'
-
-% https://golatex.de/strich-statt-autor-bei-doppelnennung-t7001.html
-\ExecuteBibliographyOptions{dashed=false}
-
-\DefineBibliographyStrings{ngerman}{%
-	bibliography={Literaturverzeichnis}% Deutsche Überschrift definieren
-}
-
-% https://golatex.de/biblatex-ausgabetext-von-urldate-aendern-t10330.html
-\DefineBibliographyStrings{german}{%
-	urlseen = {aufgerufen am},
-}
-% csquotes ist von babel empfohlen
-\usepackage{csquotes}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Kopf- und Fußzeilen
-\usepackage[autooneside=false,automark]{scrlayer-scrpage}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% git info as watermark
+\usepackage{scrlayer-scrpage}
 \usepackage{jgitinfo}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Äufzählungen nicht nur mit Nummern
 \usepackage{enumitem}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{tikz}
-\usetikzlibrary{calc}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Für gestrichelte Linien in Tabellen mit \hdashline
-\usepackage{arydshln}
-% Für Widerspruchsblitz \lightning
-\usepackage{stmaryrd}
+\usepackage{tabto}
+\usepackage[framemethod=TikZ]{mdframed}
 
 
-
-
-
-% Boolesche Variablen zur Verwendung in der Konfiguration
-\newboolean{statusEntwurf}
-\newboolean{titelblattPDF}
-\newboolean{trennlinieKopfzeile}
-\newboolean{trennlinieFusszeile}
-\newboolean{kopfFussZeileAuchBeiKapitelAnfang}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% KONFIGURATION ANFANG
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Entwurf ja/nein
-\setboolean{statusEntwurf}{false}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Autor
-\newcommand{\autor}{Jens Calov}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Titel der Arbeit
-\newcommand{\titelArbeit}{Funktionentheorie -- Sommersemester 2019}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Untertitel (wenn nicht benötigt, auskommentieren)
-\subtitle{Definitionen, Sätze, Lemmata}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Betreff (wenn nicht benötigt, auskommentieren)
-% \subject{Mitschrift der Vorlesung}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Datum
-\date{\today}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Eigenes Titelblatt als PDF
-% muss "Titelblatt.pdf" heißen und im Ordner ./content liegen
-\setboolean{titelblattPDF}{false}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Kopf- und Fußzeile (für einseitiges Layout)
+\setlength{\parindent}{0em}
 \addtokomafont{pagenumber}{\sffamily}
-\newcommand{\headLeft}{\textsf{\autor\ \textcolor{gray!37}{$\vert$ Stand: \gitCommitterDate\ $\vert$ Git-Commit: \gitAbbrevHash\ \jgitinfoRelease}}}
-\newcommand{\headCenter}{\textsf{\titelArbeit}}
-\newcommand{\headRight}{\textsf{Seite \pagemark}}
-\newcommand{\footLeft}{}
-\newcommand{\footCenter}{}
-\newcommand{\footRight}{}
-\setboolean{trennlinieKopfzeile}{true}
-\setboolean{trennlinieFusszeile}{false}
-\setboolean{kopfFussZeileAuchBeiKapitelAnfang}{true} % EMPFEHLUNG: false
-% Variablen:
-%   \pagemark (aktuelle Seitenzahl)
-%   \leftmark (Aktuelles Kapitel/chapter)
-%   \rightmark (Aktueller Abschnitt/section falls vorhanden, sonst akt. Kapitel)
-%   \autor (Name des Autors)
-%   \titelArbeit ()Titel der Arbeit)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Keywords für PDF-Eigenschaften
-\newcommand{\pdfKeywords}{\autor, Funktionentheorie, Bachelor, Prof. Dr. Reitz, Bachelor, Hochschule f\"ur Technik Stuttgart, Mathematik}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% KONFIGURATION ENDE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\numberwithin{equation}{section}
 
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Titelseite
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{\titelArbeit}
-\author{\autor}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Verlinktes Inhaltsverzeichnis, PDF-Eigenschaften
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\makeatletter % um @-Variablen nutzen zu können
+\makeatletter
 \hypersetup{
 	colorlinks,
 	pdfpagelabels,
@@ -222,105 +52,51 @@
 	linkcolor = black,
 	urlcolor = blue,
 	plainpages = false,
-	%	hypertexnames = false,
 	citecolor = black,
 	pdftitle = \@title,
 	pdfauthor = \@author,
 	pdfsubject=\@subject,
-	pdfkeywords={\pdfKeywords}
+	pdfkeywords={\@author, Funktionentheorie, Bachelor, Prof. Dr. Reitz, Bachelor, Hochschule f\"ur Technik Stuttgart, Mathematik}
 }
-\makeatother % @-Variablen wieder deaktivieren
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatother
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Wasserzeichen einblenden falls es sich um einen Entwurf handelt
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ifthenelse{
-	\boolean{statusEntwurf}
-	}{
-		\usepackage{draftwatermark}
-		\SetWatermarkFontSize{50pt}
-		\SetWatermarkText{ENTWURF \today}
-	}{
-
-	}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Kopf- und Fußzeile
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\lohead{\headLeft}
-\cohead{\headCenter}
-\rohead{\headRight}
-\lofoot{\footLeft}
-\cofoot{\footCenter}
-\rofoot{\footRight}
-\ifthenelse{
-	\boolean{trennlinieKopfzeile}
-	}{
-		\KOMAoption{headsepline}{true}
-	}{
-		\KOMAoption{headsepline}{false}
-	}
-\ifthenelse{
-	\boolean{trennlinieFusszeile}
-	}{
-		\KOMAoption{footsepline}{true}
-	}{
-		\KOMAoption{footsepline}{false}
-	}
-\ifthenelse{
-	\boolean{kopfFussZeileAuchBeiKapitelAnfang}
-	}{
-		% \renewcommand{\chapterpagestyle}{scrheadings}
-	}{
-
-	}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lohead{\textsf{\autor}}
+\cohead{\textsf{ Cheatsheet \titelArbeit}}
+\rohead{\textsf{Seite \pagemark}}
+\lofoot{}
+\cofoot{\textsf{\tiny{\textcolor{gray}{Stand: \gitCommitterDate\ $\vert$ Git-Commit: \gitAbbrevHash\ \jgitinfoRelease}}}}
+\rofoot{}
+\KOMAoption{headsepline}{true}
+\KOMAoption{footsepline}{false}
 
 
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\N}{\mathbb{N}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\Z}{\mathbb{Z}}
+\renewcommand{\mod}{\text{mod\,}}
 
+\definecolor{greeny}{rgb}{0,.39,0}
+\newcommand{\begriff}[1]{\textcolor{greeny}{\textbf{#1}}}
+\newcommand{\VL}[2]{
+	\marginpar{\rule{5cm}{0.4pt}}
+	\marginpar{\scriptsize{VL#1, #2}}
+}
 
-
-
-
-
-
-
-
-
-% Literaturdatei laden
-\addbibresource{./content/other/bib.bib}
-
-% StyleSkript von Kostas für Definitionen, Sätze, ... (angepasst)
+% StyleSkript für Definitionen, Sätze, ...
 \input{./StyleSkript.sty}
 
 
 \begin{document}
 
-	\begin{multicols*}{3}
-		\input{./content/chapters/ch01}
-		\vfill\null
-		\columnbreak
-		\input{./content/chapters/ch02}
-		\vfill\null
-		\columnbreak
-		\input{./content/chapters/ch03}
-		\vfill\null
-		\columnbreak
-		\input{./content/chapters/ch04}
-		\vfill\null
-		\columnbreak
-		\input{./content/chapters/ch05}
-		\vfill\null
-		\columnbreak
-		\input{./content/chapters/ch06}
-		\vfill\null
-		\columnbreak
-		\input{./content/chapters/ch07}
-		\vfill\null
-		\columnbreak
-		\input{./content/chapters/ch08}
-	\end{multicols*}
+	\input{./content/chapters/ch01}
+	\input{./content/chapters/ch02}
+	\input{./content/chapters/ch03}
+	\input{./content/chapters/ch04}
+	\input{./content/chapters/ch05}
+	\input{./content/chapters/ch06}
+	\input{./content/chapters/ch07}
+	\input{./content/chapters/ch08}
 
 \end{document}

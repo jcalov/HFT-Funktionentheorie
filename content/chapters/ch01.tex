@@ -1,8 +1,287 @@
 \section{Grundlagen}
 
+
+
 \subsection{Komplexe Zahlen}
 
+\begin{bemerkung}[Komplexe Zahlen]
+  \begriff{Imaginäre Einheit}:
+  \begin{align}
+    i^2 = -1
+  \end{align}
+  Alle Zahlen der Form
+  \begin{align}
+    z = x + iy, \quad x,y \in \R
+  \end{align}
+  bilden die Menge
+  \begin{align}
+    \C \coloneqq \{ z = x + i \cdot y :\ x,y \in \R \}
+  \end{align}
+  \begriff{Realteil} von $z$:
+  \begin{align}
+    \operatorname{Re}(z) \coloneqq x \in \R
+  \end{align}
+  \begriff{Imaginärteil} von $z$:
+  \begin{align}
+    \operatorname{Im}(z) \coloneqq y \in \R
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}[Addition]
+  Sei $z = x + i \, y \in \C$ und $w = u + i \, v \in \C$.
+  \begin{align}
+    \label{eq:addition}
+    z + w \coloneqq (x + u) + i \, (y + v) \in \C
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}[Inverses Element bzgl. Addition]
+  Sei $z = x + i \, y \in \C$.
+  \begin{align}
+    \label{eq:inv_addition}
+    -z = (-x) + i \, (-y) = - x - i \, y \in \C
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}[Multiplikation]
+  Sei $z = x + i \, y \in \C$ und $w = u + i \, v \in \C$.
+  \begin{align}
+    \label{eq:multiplikation}
+    z \cdot w
+      \coloneqq (x + i \, y) \cdot (u + i \, v)
+      = (x \, u - y \, v) + i \, (x \, v + y \, u)
+      \in \C
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}[Inverses Element bzgl. Multiplikation]
+  Sei $z = x + i \, y \in \C, z \neq 0$.
+  \begin{align}
+    \label{eq:inv_multiplikation}
+    \frac{1}{z}
+      &= \frac{1}{(x + i \, y)}
+       = \frac{x - i \, y}{(x + i \, y) \, (x - i \, y)}
+       % = \frac{x - i \, y}{x^2 - (i \, y)^2}
+       = \frac{x - i \, y}{x^2 - i^2 \, y^2}
+       = \frac{x - i \, y}{x^2 + y^2}
+        \notag\\
+      &= \frac{x}{x^2 + y^2} - i \cdot \frac{y}{x^2 + y^2} \in \C
+  \end{align}
+\end{bemerkung}
+
+\begin{satz}[Körpereigenschaften von $\C$]
+  Die Menge $\C$ der komplexen Zahlen bilden mit oben definierter Addition \eqref{eq:addition} bzw. Multiplikation \eqref{eq:multiplikation} einen Körper.
+  Das Einselement dieses Körpers ist
+  \begin{align}
+    1 + 0 \cdot i = 1 \in \C
+  \end{align}
+  und das Nullelement ist
+  \begin{align}
+    z = 0 + 0 \cdot i = 0 \in \C .
+  \end{align}
+  Es gelten somit die Rechenregeln (für $z, v, w \in \C$; $z = x + i \cdot y$):
+  \newcommand{\tabone}{39mm}
+  \begin{enumerate}[label=\alph*)]
+    \item $(z + v) + w = z + (v + w)$ \tabto{\tabone} Assioziativgesetz
+    \item $z + 0 = z$ \tabto{\tabone} neutrales Element
+    \item $z + (-z) = 0$ \tabto{\tabone} inverses Element; wobei \eqref{eq:inv_addition} gilt
+    \item $z + w = w + z$ \tabto{\tabone} Kommutativgesetz
+    \item $(z \cdot v) \cdot w = z \cdot (v \cdot v)$ \tabto{\tabone} Assoziativgesetz
+    \item $z \cdot 1 = z$ \tabto{\tabone}  neutrales Element
+    \item $\displaystyle z \cdot \frac{1}{z} = 1$ für $z \neq 0$ \tabto{\tabone} inverses Element; wobei \eqref{eq:inv_multiplikation} gilt
+    \item $z \cdot w = w \cdot z$ \tabto{\tabone} Kommutativgesetz
+    \item $z \cdot (v + w) = z \cdot v + z \cdot w$ \tabto{\tabone} Distributivgesetz
+  \end{enumerate}
+\end{satz}
+
+\begin{bemerkung}[Binomische Formel]
+  Mit $z, w \in \C$ und $n \in \N$:
+  \begin{align}
+    (z + w)^n
+      = \sum_{k=0}^n \binom{n}{k} \cdot z^k \cdot w^{n-k}
+      = \sum_{k=0}^n \frac{n!}{k! \, (n-k)!} \cdot z^k \cdot w^{n-k}
+  \end{align}
+\end{bemerkung}
+
+\begin{definition}[Absolutbetrag, konjugiert komplexe Zahl]
+  \label{def:absolutbetrag}
+  Es sei $z = x + i \cdot y = (x, y) \in \C$.
+  Dann ist
+  \[ |z| \coloneqq \sqrt{x^2 + y^2} \geq 0 \in \R \]
+  der \begriff{Absolutbetrag} von $z$ und
+  \[ \overline{z} \coloneqq x - i \cdot y \]
+  die zu $z$ \begriff{konjugiert komplexe Zahl}.
+\end{definition}
+
+\begin{bemerkung}[Absolutbetrag mit konjugiert komplexer Zahl]
+  Wegen $z \cdot \overline{z} = (x + i \, y) \, (x - i \, y) = x^2 - i^2 y^2 = x^2 + y^2 = |z|^2$ folgt:
+  \begin{align}
+    |z| = \sqrt{z \cdot \overline{z}}
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}[Abstand komplexer Zahlen]
+  Sei $z = x + i \, y \in \C$ und $w = u + i \, v \in \C$.
+  Dann ist ihr Abstand:
+  \begin{align}
+    | z - w |
+      = | (x-u) + i \, (y-v) |
+      \stackrel{\text{\tiny{Def. \ref{def:absolutbetrag}}}}{=} \sqrt{(x-u)^2 + (y-v)^2 }
+  \end{align}
+\end{bemerkung}
+
+\begin{satz}[Rechenregeln]
+  Für $z = x + i \, y$, $w = u + i \, v$ gelten folgende Rechenregeln:
+  \begin{enumerate}
+    \item $\displaystyle \overline{z \pm w} = \overline{z} \pm \overline{w}$
+    \item $\displaystyle \overline{z \cdot w} = \overline{z} \cdot \overline{w}$
+    \item $\displaystyle \overline{\left( \frac{z}{w} \right)} = \frac{\overline{z}}{\overline{w}}$ $(w \neq 0)$
+    \item $\displaystyle \overline{\left( \overline{z} \right)} = \overline{z}$
+    \item $\displaystyle \left| \overline{z} \right| = \left| z \right|$
+    \item $\displaystyle \operatorname{Re}(z) = \frac{z + \overline{z}}{2}$\\
+      $\displaystyle \operatorname{Im}(z) = \frac{z - \overline{z}}{2}$
+    \item $\displaystyle \operatorname{Re}(z_1 + \dots + z_n) = \operatorname{Re}(z_1) + \dots + \operatorname{Re}(z_n)$\\
+      $\displaystyle \operatorname{Im}(z_1 + \dots + z_n) = \operatorname{Im}(z_1) + \dots + \operatorname{Im}(z_n)$
+    \item $\displaystyle \operatorname{Re}(z) \leq |z|$\\
+      $\displaystyle \operatorname{Im}(z) \leq |z|$
+    \item $\displaystyle | z \cdot w | = |z| \cdot |w|$\\
+      $\displaystyle \left| \frac{z}{w} \right| = \frac{|z|}{|w|}$ $(w \neq 0)$
+  \end{enumerate}
+\end{satz}
+
+\begin{bemerkung}[Dreiecksungleichung]
+  Sei $z, w \in \C$.
+  Dann gilt (wie im Reellen) für den Betrag im Komplexen die \begriff{Dreiecksungleichung}:
+  \begin{align}
+    | z \pm w | \leq |z| + |w|
+  \end{align}
+  Allgemein gilt:
+  \begin{align}
+    \left| \sum_{k=1}^n z_k \right| \leq \sum_{k=1}^n z_k \left| z_k \right|
+  \end{align}
+\end{bemerkung}
+
+\begin{definition}[Kreisscheibe, $r$-Umgebung einer komplexen Zahl]
+  Es sei $a \in \C$ und $r \in \R$, $r > 0$.
+  Dann ist die Menge
+  \begin{align}
+    K_r (a) \coloneqq \{ z \in \C : \ |z-a| < r \}
+  \end{align}
+  die \begriff{(offene) Kreisscheibe} um $a$ mit Radius $r>0$ (oder \begriff{$r$-Umgebung} von $a$)
+\end{definition}
+
+\begin{bemerkung}[Polarkoordinatendarstellung komplexer Zahlen]
+  Eine komplexe Zahl $z = x + i \, y, z = 0$, ist eindeutig bestimmt durch den \begriff{Betrag}
+  \begin{align}
+    r \coloneqq |z| = \sqrt{x^2 + y^2}
+  \end{align}
+  und durch das \begriff{Argument}
+  \begin{align}
+    \operatorname{arg}(z) \coloneqq \varphi, \ (0 \leq \varphi < 2\pi).
+  \end{align}
+  Es gilt:
+  \begin{align}
+    x = |z| \cdot \cos\varphi \text{ und } y = |z| \cdot \sin\varphi .
+  \end{align}
+  Man nennt
+  \begin{align}
+    z = r \cdot \left( \cos\varphi + i \cdot \sin\varphi \right)
+  \end{align}
+  die \begriff{Polarkoordinatendarstellung} von $z \neq 0$.
+  Es gilt auch:
+  \begin{align}
+    z = r \cdot \left[ \cos (\varphi + 2 k \pi) + i \cdot \sin (\varphi + 2 k \pi) \right],\ k \in \Z .
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}[Umrechnung zwischen Darstellungen]
+  Für die Umrechnung zwischen den Darstellungen $z = x + i \, y$ und $z = r \cdot \left( \cos\varphi + i \cdot \sin\varphi \right)$ gelten folgende Regeln:
+  \begin{enumerate}
+    \item Gegeben sei $z = x + i \, y \neq 0$.
+      Mit
+      \begin{align}
+        r &\coloneqq |z| = \sqrt{x^2 + y^2} \text{ und}\\
+        \operatorname{arg}(z) &= \varphi \coloneqq
+          \begin{cases}
+            \arccos \frac{x}{r} & \text{für } y \geq 0\\
+            2 \pi - \arccos \frac{x}{r} & \text{für } y < 0
+          \end{cases}
+      \end{align}
+      gilt
+      \begin{align}
+        z = r \cdot \left( \cos\varphi + i \cdot \sin\varphi \right) .
+      \end{align}
+    \item Gegeben sei $z = r \cdot \left( \cos\varphi + i \cdot \sin\varphi \right)$ mit $r > 0$, $\varphi \in [o,2\pi)$.
+      Mit
+      \begin{align}
+        x &\coloneqq r \cdot \cos \varphi \text{ und}\\
+        y &\coloneqq r \cdot \sin \varphi
+      \end{align}
+      gilt
+      \begin{align}
+        z = x + i \, y .
+      \end{align}
+  \end{enumerate}
+\end{bemerkung}
+
+\begin{satz}
+\label{satz:1_3}
+  Sind $z, w \in \C\setminus\{0\}$ mit
+  \begin{align}
+    z = |z| \cdot \left( \cos\varphi + i \cdot \sin\varphi \right), \quad w = |w| \cdot \left( \cos\psi + i \cdot \sin\psi \right),
+  \end{align}
+  so gilt
+  \begin{align}
+    z \cdot w &= |z| \cdot |w| \cdot \left[ \cos(\varphi + \psi) + i \cdot \sin(\varphi + \psi) \right],\\
+    \frac{z}{w} &= \frac{|z|}{|w|} \cdot \left[ \cos(\varphi - \psi) + i \cdot \sin(\varphi - \psi) \right] .
+  \end{align}
+\end{satz}
+
+\begin{bemerkung}[Folgerung]
+  Aus Satz \arabic{section}.\ref{satz:1_3} folgt:
+  \begin{align}
+    \operatorname{arg}(z \cdot w) = \operatorname{arg}(z) + \operatorname{arg}(w) \quad (\mod 2 \pi)\\
+    \operatorname{arg}(\frac{z}{w}) = \operatorname{arg}(z) - \operatorname{arg}(w) \quad (\mod 2 \pi)
+  \end{align}
+\end{bemerkung}
+
 \subsection{Die komplexe Exponentialfunktion (Teil 1)}
+
+\begin{bemerkung}[Reelle Exponentialfunktion]
+  Bekannte reelle Exponentialfunktion ($x, y \in \R$):
+  \begin{align}
+    e^x &= \sum_{n=0}^\infty \frac{x^n}{n!},\\
+    e^{x+y} &= e^x \cdot e^y
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}[Komplexe Exponentialfunktion]
+  Bekannte Komplexe Exponentialfunktion ($z, w \in \C$):
+  \begin{align}
+    e^z &\coloneqq \sum_{n=0}^\infty \frac{z^n}{n!},\\
+    e^{z+w} &= e^z \cdot e^w \label{eq:potenz_komplex}
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}[Eulersche Gleichung]
+  Für $x, y \in \R$ und $z \coloneqq x + i\,y$ gilt:
+  \begin{align}
+    e^{i\,y} &= \cos(y) + i \, \sin(y) \qquad \text{Eulersche Gleichung}\\
+    e^z &= e^x \cdot e^{i \, y} = e^x \cdot e^{i \, y} = e^x \cdot \left[ \cos(y) + i \, \sin(y) \right]
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}[Eulersche Identität]
+  Aus der Eulerschen Gleichung folgt sofort die Eulersche Identität:
+  {
+    \Huge
+    \begin{align}
+      e^{i\pi} + 1 = 0 \notag
+    \end{align}
+  }
+\end{bemerkung}
+
+
 
 \subsection{Punktmengen in der komplexen Ebene}
 

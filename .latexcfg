@@ -1,4 +1,4 @@
 {
-  "toolchain" : "git checkout .gitignore && %TEX %ARG %DOC",
+  "toolchain" : "git checkout .gitignore && %TEX %ARG %DOC && %TEX %ARG %DOC",
   "latex_ext" : [ ".cls", ".sty" ]
 }

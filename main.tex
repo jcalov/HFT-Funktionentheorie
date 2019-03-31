@@ -21,7 +21,7 @@
 \date{\today}
 
 
-\usepackage[top=8.5mm,bottom=11.5mm,left=0mm,right=0mm, twocolumn]{geometry}
+\usepackage[top=8.5mm,bottom=0mm,left=0mm,right=0mm, twocolumn]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage[dvipsnames]{xcolor}
@@ -60,11 +60,11 @@
 }
 \makeatother
 
-\lohead{\textsf{\autor}}
-\cohead{\textsf{ Cheatsheet \titelArbeit}}
+\lohead{\textsf{\autor\ \textsf{\tiny{\textcolor{gray}{Stand: \gitCommitterDate\ $\vert$ Git-Commit: \gitAbbrevHash\ \jgitinfoRelease}}}}}
+\cohead{\textsf{Cheatsheet \titelArbeit}}
 \rohead{\textsf{Seite \pagemark}}
 \lofoot{}
-\cofoot{\textsf{\tiny{\textcolor{gray}{Stand: \gitCommitterDate\ $\vert$ Git-Commit: \gitAbbrevHash\ \jgitinfoRelease}}}}
+\cofoot{}
 \rofoot{}
 \KOMAoption{headsepline}{true}
 \KOMAoption{footsepline}{false}

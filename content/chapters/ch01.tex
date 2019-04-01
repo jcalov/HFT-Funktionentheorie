@@ -162,6 +162,7 @@
 \end{bemerkung}
 
 \begin{definition}[Kreisscheibe, $r$-Umgebung einer komplexen Zahl]{S. 12}
+  \label{def:1_2}
   Es sei $a \in \C$ und $r \in \R$, $r > 0$.
   Dann ist die Menge
   \begin{align}
@@ -268,7 +269,7 @@
 \begin{bemerkung}{Eulersche Gleichung}{S. 18}
   Für $x, y \in \R$ und $z \coloneqq x + i\,y$ gilt:
   \begin{align}
-    e^{i\,y} &= \cos(y) + i \, \sin(y) \qquad \text{Eulersche Gleichung}\\
+    e^{iy} &= \cos(y) + i \, \sin(y) \qquad \text{Eulersche Gleichung}\\
     e^z &= e^x \cdot e^{i \, y} = e^x \cdot e^{i \, y} = e^x \cdot \left[ \cos(y) + i \, \sin(y) \right]
   \end{align}
 \end{bemerkung}
@@ -283,8 +284,103 @@
   }
 \end{bemerkung}
 
+\begin{satz}{S. 19}
+  \label{satz:1_4}
+  \begin{enumerate}
+    \item Es gilt für $y \in \R$:
+      \begin{align}
+        \cos y &= \operatorname{Re}\left( e^{iy} \right) = \frac{e^{iy} + e^{-iy}}{2},\\
+        \sin y &= \operatorname{Im}\left( e^{iy} \right) = \frac{e^{iy} - e^{-iy}}{2i}
+      \end{align}
+    \item Jede komplexe Zahl $c \in \C\setminus\{0\}$ lässt sich in der Form
+      \begin{align}
+        z = r \cdot e^{i\varphi}
+      \end{align}
+      mit $r = |z|$ und $\varphi = \operatorname{arg}(z)$ schreiben.
+    \item Für $z \cdot r \cdot e^{i\varphi}$, $w = s \cdot e^{i\psi}$ gilt:
+      \begin{align}
+        z \cdot w &= r \cdot s \cdot e^{\varphi + \psi}\\
+        \frac{z}{w} &= \frac{r}{s} \cdot e^{\varphi - \psi} \ (w \neq 0).
+      \end{align}
+  \end{enumerate}
+\end{satz}
+
+\begin{satz}[Formel von Moivre]{S. 19}
+  \label{satz:1_5}
+  Für $n \in \N_0$ gilt:
+  \begin{align}
+    \left( \cos \varphi + i \, \sin \varphi \right)^n = \cos \left( n \, \varphi \right) + i \, \sin \left( n \, \varphi \right)
+  \end{align}
+\end{satz}
+
 
 
 \subsection{Punktmengen in der komplexen Ebene}
 
+\begin{definition}[Gebiet]{S.20}
+  Eine Teilmenge $G \subseteq \C$ heißt \begriff{Gebiet}, wenn $G$ offen und zusammenhängen ist.
+\end{definition}
+
+\begin{definition}[einfach zusammenhängend]{S.21}
+  Ein Gebiet $G \subseteq \C$ heißt \begriff{einfach zusammenhängend}, wenn das Innere jedes in $G$ verlaufenden geschlossenen Streckenzuges ganz zu $G$ gehört, d.h. wenn $G$ keine Löcher hat.
+\end{definition}
+
+\begin{bemerkung}{Randpunkt, Rand von $D$}{S. 21}
+  Ist $D \subseteq \C$ eine beliebige Menge, so heißt ein Punkt $z \in \C$ ein \begriff{Randpunkt} von $D$, wenn in jeder $r$-Umgebung (Def. \arabic{section}.\ref{def:1_2} S. \pageref{def:1_2}) von $z$ sowohl Punkte aus $D$ liegen, als auch Punkte, die nicht zu $D$ gehören.
+  Der \begriff{Rand von $D$} ist die Menge aller Randpunkte; er wird mit
+  \begin{align}
+    \partial D
+  \end{align}
+  bezeichnet.
+\end{bemerkung}
+
+\begin{bemerkung}{abgeschlossen}{S. 22}
+  Eine Menge $D \subseteq \C$ heißt \begriff{abgeschlossen}, wenn der Rand von $D$ zu $D$ gehört: $\partial D \subseteq D$.
+  Man nennt $\overline{D} \coloneqq D \cup \partial D$ den \begriff{Abschluss} von $D$.
+\end{bemerkung}
+
+\begin{bemerkung}{beschränkt, unbeschränkt}{S. 22}
+  Eine Menge $D \subseteq \C$ kann beschränkt oder unbeschränkt sein.
+  Wir nennen $D$ \begriff{beschränkt}, wenn es eine (hinreichend große) Kreisscheibe $K_r(0)$ gibt, die $D$ umfasst.
+  Andernfalls heißt $D$ \begriff{unbeschränkt}.
+\end{bemerkung}
+
+
+
 \subsection{Zahlenfolgen in der komplexen Ebene}
+
+\begin{definition}[konvergente Folge]{S. 22}
+  Man sagt, eine komplexe Zahlenfolge $\left( z_n \right)_{n \geq 0}$ \begriff{konvergiert} gegen den Grenzwert $z \in \C$, und man schreibt
+  \begin{align}
+    \lim_{n \to \infty} z_n = z \quad \text{ oder } \quad z_n \to z ,
+  \end{align}
+  wenn es zu jedem $\varepsilon > 0$ einen Index $N(\varepsilon) \in \N_0$ gibt, so dass gilt:
+  \begin{align}
+    | z_n -z | < \varepsilon \quad \text{ für alle } n \in N(\varepsilon) .
+  \end{align}
+  Konvergiert die Folge nicht, so nennt man sie \begriff{divergent}.
+\end{definition}
+
+\begin{bemerkung}{$z_n\to\infty$}{S. 23}
+  Wir schreiben $\displaystyle\lim_{n \to \infty} z_n = \infty$, falls für die \textbf{reelle} Folge $\left( |z_n| \right)$ gilt:\\
+  \begin{align}
+    \displaystyle\lim_{n \to \infty} |z_n| = +\infty . \notag
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{Rechenregeln konvergenter komplexer Folgen}{S. 23}
+  Wie bei reellen Folgen ist der Grenzwert einer konvergenten komplexen Folge eindeutig bestimmt und es gelten die bekannten Rechenregeln für $z, w \in \C$:
+  \begin{align}
+    \begin{rcases}
+      \displaystyle \lim_{n \to \infty} z_n = z\\
+      \displaystyle \lim_{n \to \infty} w_n = w
+    \end{rcases}
+    \Rightarrow
+    \begin{cases}
+      \displaystyle \lim_{n \to \infty} \left( z_n \pm w_n \right) &= z \pm w \\
+      \displaystyle \lim_{n \to \infty} \left( z_n \cdot w_n \right) &= z \cdot w \\
+      \displaystyle \lim_{n \to \infty} \frac{z_n}{w_n} &= \displaystyle \frac{z}{w} \ (w_n, w \neq 0) \\
+      \displaystyle \lim_{n \to \infty} |z_n| &= |z|
+    \end{cases}
+  \end{align}
+\end{bemerkung}

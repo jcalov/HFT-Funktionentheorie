@@ -1,15 +1,282 @@
 \section{Elementare Funktionen}
 
+
+
 \subsection{Grundlagen}
+
+
 
 \subsection{Grenzwerte und Stetigkeit}
 
+\begin{definition}[Grenzwert, Stetigkeit]{S. 27}
+  \begin{enumerate}
+    \item Die Funktion $f$ sei definiert in einer $r$-Umgebung (Kreisscheibe) um einen Punkt $z_0 \in \C$, mit der Einschränkung, dass $f$ am Punkt $z_0$ eventuell undefiniert ist.
+      Die Zahl $w_0$ heißt \begriff{Grenzwert} fon $f$ für $z \to z_0$,
+      \begin{align}
+        \lim_{z \to z_0} = w_0,
+      \end{align}
+      wenn für jedes (beliebig kleine) $\varepsilon > 0$ eine Zahl $\delta > 0$ existiert mit
+      \begin{align}
+        \left| f(z) -w_0 \right| < \varepsilon \quad \text{ für alle $z$ mit } \quad 0 < | z - z_0 | < \delta .
+      \end{align}
+      Bei \textbf{beliebiger Annäherung} von $z$ an $z_0$ müssen sich die Funktionswerte $f(z)$ also dem Wert $w_0$ annähern; anderfalls existiert der Grenzwert nicht!
+    \item $f$ heißt \begriff{stetig} in $z_0$, wenn $f$ in $z_0$ definiert ist und wenn gilt:
+      \begin{align}
+        \lim_{z \to z_0} f(z) = f(z_0) .
+      \end{align}
+  \end{enumerate}
+\end{definition}
+
+\begin{bemerkung}{$\displaystyle \lim f(z) = \infty$}{S. 27}
+  Man schreibt $\displaystyle \lim_{z \to z_0} f(z) = \infty$, falls gilt: $\displaystyle \lim_{z \to z_0} \left| f(z) \right| = \infty$.
+\end{bemerkung}
+
+
+
 \subsection{Die komplexe Exponentialfunktion (Teil 2)}
+
+\begin{bemerkung}{Die komplexe $e$-Funktion}{S. 27}
+  Es sei $f : \C \to \C$ mit
+  \begin{align}
+    f(z) = e^z = e^{x+iy} = e^x \, e^{iy} = e^x \left( \cos y + i \, \sin y \right) ,
+  \end{align}
+  für $z = x + iy$.
+  Man schreibt auch
+  \begin{align}
+    f(z) = \operatorname{exp}(z) .
+  \end{align}
+  \begin{enumerate}
+    \item Gerade $x = x_0$ wird auf Kreis abgebildet.
+    \item Gerade $y = y_0$ wird auf Halbgerade von $0$ mit Winkel $y_0$ abgebildet.
+    \item Der \begriff{Fundamentalstreifen}:
+      \begin{align}
+        \label{eq:Fundamentalstreifen}
+        F \coloneqq \left\{ z \in \C : -\pi < y = \operatorname{Im}(z) \leq \pi \right\}
+      \end{align}
+  \end{enumerate}
+\end{bemerkung}
+
+\begin{satz}{S. 29}
+  Die Exponentialfunktion $f(z) = e^z$ ist eine bijektive Abbildung von $F$ auf $\C \setminus \{ 0 \}$.
+\end{satz}
+
+\begin{bemerkung}{Periodizität}{S. 30}
+  Die Funktion $f(z) = e^z$ hat die \begriff{Periode} $2 k \pi i$, denn es gilt
+  \begin{align}
+    f(z + 2 k \pi i) = e^{z + 2 k \pi i} = e^z \cdot e^{2 k \pi i} = e^z = f(z) .
+  \end{align}
+  Jeder Streifen der Form
+  \begin{align}
+    S = \left\{ z \in \C : (2k-1)\,\pi < y = \operatorname{Im}(z) \leq (2k+1)\,\pi \right\} \ (k \in \Z)
+  \end{align}
+  wird bijektiv auf $\C \setminus \{ 0 \}$ abgebildet, da $S$ durch Verschiebung um $2 k \pi i$ aus $F$ \eqref{eq:Fundamentalstreifen} entsteht.
+\end{bemerkung}
+
+
 
 \subsection{Der komplexe Logarithmus und allgemeine Potenzen}
 
+\begin{bemerkung}{Umkehrfunktion von $e^z$}{S. 30}
+  $f(z) = e^z$ ist eine bijektive Abbildung von $F$ \eqref{eq:Fundamentalstreifen} auf $\C \setminus \{ 0 \}$, daher existiert die Umkehrfunktion
+  \begin{align}
+    f^{-1} : \C \setminus \{ 0 \} \to F, \quad w \mapsto z = f^{-1}(w)
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{Komplexer Logarithmus}{S. 30}
+  Zu gegebenem $w \in \Co$ definieren wir
+  \begin{align}
+    \Ln(w) \coloneqq \ln |w| + i \, \argu(w)
+  \end{align}
+  mit $\argu(w) \in (-\pi,\pi]$, wobei $\ln$ der natürliche Logarithmus für reelle Zahlen ist.
+  Man nennt dies den \begriff{Hauptwert des komplexen Logarithmus}.
+  Wegen $e^{z + 2 k \pi i} = e^z$ gilt auch
+  \begin{align}
+    \Ln_k(w) \coloneqq \ln |w| + i \, \argu(w) + 2 k \pi i \quad (k \in \Z) .
+  \end{align}
+  Für $k \neq 0$ nennt man dies die \begriff{Nebenzweige des komplexen Logarithmus}.
+\end{bemerkung}
+
+\begin{bemerkung}{Vorsicht}{S. 31}
+  Die Regel $\Ln(z \cdot w) = \Ln(z) + \Ln(w)$ gilt \textbf{nicht} im Allgemeinen!
+\end{bemerkung}
+
+\begin{bemerkung}{Rechenregeln}{S. 31}
+  Für $z, w \in \C, n \in \Z$ gilt:
+  \begin{align}
+    a^z \cdot a^w &= a^{z+w}\\
+    \left( a^z \right)^n &= a^{n \cdot z}
+  \end{align}
+\end{bemerkung}
+
+
+
 \subsection{Die trigonometrischen Funktionen}
+
+\begin{definition}{S. 31}
+  \label{def:2_2}
+  Für $z \in \C$ definieren wir:
+  \begin{align}
+    \cos z &\coloneqq \frac{1}{2}  \, \left( e^{iz} + e^{-iz} \right),\\
+    \sin z &\coloneqq \frac{1}{2i} \, \left( e^{iz} - e^{-iz} \right),\\
+    \tan z &\coloneqq \frac{\sin z}{\cos z}, \text{ falls } \cos z \neq 0,\\
+    \cot z &\coloneqq \frac{\cos z}{\sin z}, \text{ falls } \sin z \neq 0.
+  \end{align}
+\end{definition}
+
+\begin{bemerkung}{Eigenschaften trigonometrischer Funktionen}{S. 32}
+  \begin{enumerate}
+    \item Symmetrien:
+      \begin{align}
+        \cos(-z) &= \cos(z)\\
+        \sin(-z) &= - \sin(z)
+      \end{align}
+    \item Additionstheoreme:
+      \begin{align}
+        \cos(z+w) &= \cos z \cdot \cos w - \sin z \cdot \sin w\\
+        \sin(z+w) &= \sin z \cdot \cos w + \cos z \cdot \sin w
+      \end{align}
+    \item Eulersche Gleichung:
+      \begin{align}
+        e ^{i \cdot z} = \cos z + i \sin z
+      \end{align}
+      Dies stellt \textbf{nicht} die Zerlegung in Real- und Imaginärteil dar, die sieht so aus:
+      \begin{align}
+        e^{iz} &= e^{i \, (x+iy)} = e^{-y + ix} = e^{-y} \, \left( \cos x + i \, \sin x \right)\\
+        \Re(iz) &= e^{-y} \, \cos x\\
+        \Im(iz) &= e^{-y} \, \sin x
+      \end{align}
+      Mit Definition \ref{def:2_2} gilt:
+      \begin{align}
+        \cos z = \cos x \cdot \cosh y + i \, (- \sin x \cdot \sinh y)\\
+        \sin z = \sin x \cdot \cosh y + i \, (- \cos x \cdot \sinh y)
+      \end{align}
+    \item Periodizität:\\
+      \begin{center}
+        \vspace{-\baselineskip}
+        $\cos z$ und $\sin z$ sind $2\pi$-periodisch.
+      \end{center}
+    \item Nullstellen:
+      \begin{align}
+        \cos z = 0 \quad &\Leftrightarrow \quad z = \frac{(2k + 1) \, \pi}{2}, \ k \in \Z\\
+        \sin z = 0 \quad &\Leftrightarrow \quad z = k \, \pi, \ k \in \Z
+      \end{align}
+    \item Keine Beschränktheit:\\
+      \begin{center}
+        \vspace{-\baselineskip}
+        Es gilt \textbf{nicht}: $|\sin z| \leq 1$ und $|\cos z| \leq 1$
+      \end{center}
+    \item Stetigkeit:\\
+      Die trigonometrischen Funktionen sind auf ihrem Definitionsbereich jeweils stetig.
+  \end{enumerate}
+\end{bemerkung}
+
+
 
 \subsection{Wurzeln}
 
+\begin{satz}[$n$-te Wurzeln]{S. 32}
+  \label{satz:2_2}
+  Ist $a \in \Co$, $a = r \cdot e^{i\varphi}$, $\varphi \in [0, 2\pi)$, so ist jede der Zahlen
+  \begin{align}
+    z_k \coloneqq \sqrt[n]{r} \cdot e^{i \, \frac{\varphi + 2k\pi}{n}}, \quad k \in \{ 0, 1, \dots, n-1 \}
+  \end{align}
+  eine $n$-te Wurzel von $a$.
+\end{satz}
+
+\begin{bemerkung}{$\sqrt[n]{0}$}{S. 33}
+  Für $a = 0$ setzt man $\sqrt[n]{0} \coloneqq 0$.
+\end{bemerkung}
+
+\begin{bemerkung}{Einheitswurzeln}{S. 33}
+  Für $a = 1$ spricht man von den \begriff{Einheitswurzeln}. Wegen $a = 1 = 1 \cdot e^{i \cdot 0}$ laten die Einheitswurzeln nach Satz \ref{satz:2_2}:
+  \begin{align}
+    z_k &= e^{i \, \frac{2k\pi}{n}}, \quad k \in \{ 0, 1, \dots, n-1 \}\\
+    z_0 &= 1
+  \end{align}
+  Die $n$-ten Einheitswurzeln sind die Nullstellen des Polynoms
+  \begin{align}
+    p(z) = z^n - 1 .
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{Hauptwert der $n$-ten Wurzel}{S. 33}
+  Um für $z \in \Co$ die Funktion $f(z) = \sqrt[n]{z}$ definieren zu können, muss man einen der $n$ Werte $z_0, \dots, z_{n-1}$ auswählen und definiert daher die Funktion
+  \begin{align}
+    \sqrt[n]{z} \coloneqq z_0 = \sqrt[n]{r} \cdot e^{i \, \frac{\varphi}{n}}, \quad \varphi \in [0, 2\pi)
+  \end{align}
+  und spricht vom \begriff{Hauptwert der $n$-ten Wurzel}.
+\end{bemerkung}
+
+
+
 \subsection{Möbius-Transformationen}
+
+\begin{bemerkung}{Möbius-Transformation}{S. 34}
+  Die gebrochen-linearen Funktionen oder \begriff{Möbius-Transformationen} haben die Form
+  \begin{align}
+    f(z) = \frac{az + b}{cz + d}, \quad a,b,c,d \in \C, \ ad-bc \neq 0 . \label{eq:2_3}
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{Erweiterung der komplexen Zahlen}{S. 34}
+  Um Fallunterscheidungen zu vermeiden, erweitert man die komplexen Zahlen $\C$ zur \begriff{abgeschlossenen komplexen Ebene}
+  \begin{align}
+    \Ch \coloneqq \C \cup \{\infty\} .
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{Erweiterung der Möbius-Transformation mit $\Ch$}{S. 34}
+  \begin{align}
+    f \left( - \frac{d}{c} \right) &\coloneqq \infty \label{eq:2_4_1}\\
+    f(\infty) &\coloneqq \frac{a}{c} \label{eq:2_4_2}
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{Umkehrabbildung der Möbius-Transformation}{S. 34}
+  Durch \eqref{eq:2_3}, \eqref{eq:2_4_1} und \eqref{eq:2_4_2} ist eine bijektive Abbildung $f : \Ch \to \Ch$ definiert.
+  Die Umkehrabbildung ist ebenfalls eine Möbius-Transformation:
+  \begin{align}
+    & f(z) = w = \frac{az + b}{cz + d} \notag\\
+    \Leftrightarrow & f^{-1}(w) = z = \frac{dw - b}{-cw + a}, \ ad-bc \neq 0
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{Verknüpfung zweier Möbius-Transformationen}{S. 34}
+  Die Verknüpfung $w = (f \circ g)(z)$ zweier Möbius-Transformationen vom Typ \eqref{eq:2_3} ergibt wieder eine Möbius-Transformation.
+\end{bemerkung}
+
+\begin{satz}{S. 34}
+  Jede Möbius-Transformation entsteht durch Hintereinanderausführung von Abbildungen der folgenden Art:\\
+  \vspace{-1.5\baselineskip}
+  \begin{align}
+    \intertext{Drehstreckung:}
+      \vspace{-\baselineskip}
+    z &\mapsto u \cdot z
+    \intertext{Translation:}
+    z &\mapsto z + v
+    \intertext{Inversion:}
+    z &\mapsto \frac{1}{z}
+  \end{align}
+\end{satz}
+
+\begin{satz}{S. 35}
+  Die Möbius-Transformation ist kreis-, winkel- und orientierungstreu, d.h.:
+  \begin{enumerate}[label=\alph*)]
+    \item Kreise \tabto{1.2cm} in $\C$ werden auf Kreise oder Geraden in $\C$ abgebildet.\\
+      Geraden \tabto{1.2cm} in $\C$ werden auf Kreise oder Geraden in $\C$ abgebildet.
+    \item Zwei Kurven in der $z$-Ebene schneiden sich unter dem gleichen Winkel wie ihre Bildkurven in der $w$-Ebene.
+    \item Die linke Seite eines orientierten Kreises (bzw. einer orientierten Gerade) wird auf die linke Seite des Bildkreises bzw. der Bildgeraden abgebildet.
+  \end{enumerate}
+\end{satz}
+
+\begin{bemerkung}{Kreisgleichung}{S. 35}
+  \vspace{-\baselineskip}
+  \begin{align}
+     \left( \frac{x - x_0}{r} \right)^2 + \left( \frac{y - y_0}{r} \right)^2 = 1
+  \end{align}
+\end{bemerkung}
+
+\begin{satz}{S. 36}
+  Zu je drei beliebig vorgegebenen paarweise verschiedenen Punkten $z_1$, $z_2$, $z_3 \in \Ch$ und drei weiteren paarweise verschiedenen Punkten $w_1, w_2, w_3 \in \Ch$ gibt es genau eine Möbius-Transformation $f$ mit der Eigenschaft $f(z_1) = w_1$ und $f(z_2) = w_2$ und $f(z_3) = w_3$.
+\end{satz}

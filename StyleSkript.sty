@@ -10,6 +10,7 @@
 \newcounter{satz}[section]
 \setcounter{satz}{0}
 \newcommand{\satztitel}{Satz~\arabic{section}.\arabic{satz}}
+\renewcommand{\thesatz}{\arabic{section}.\arabic{satz}}
 \newenvironment{satz}[2][]{
 	\refstepcounter{satz}
 	\renewcommand{\jcolor}{orange!50}
@@ -52,6 +53,7 @@
 \newcounter{definition}[section]
 \setcounter{definition}{0}
 \newcommand{\definitiontitel}{Definition~\arabic{section}.\arabic{definition}}
+\renewcommand{\thedefinition}{\arabic{section}.\arabic{definition}}
 \newenvironment{definition}[2][]{
 	\refstepcounter{definition}
 	\renewcommand{\jcolor}{yellow!50}

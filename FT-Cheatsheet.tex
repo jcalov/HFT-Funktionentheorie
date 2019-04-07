@@ -14,6 +14,10 @@
 ]{scrartcl}
 
 
+% Abstand nach subsection anpassen
+\RedeclareSectionCommand[afterskip=0pt]{subsection}
+
+
 \newcommand{\autor}{Jens Calov}
 \newcommand{\titelArbeit}{Funktionentheorie -- Sommersemester 2019}
 \title{\titelArbeit}
@@ -71,10 +75,16 @@
 
 
 \newcommand*{\C}{\mathbb{C}}
+\newcommand*{\Co}{\mathbb{C}\setminus\{0\}}
+\newcommand*{\Ch}{\hat{\mathbb{C}}}
 \newcommand*{\N}{\mathbb{N}}
 \newcommand*{\Q}{\mathbb{Q}}
 \newcommand*{\R}{\mathbb{R}}
 \newcommand*{\Z}{\mathbb{Z}}
+\renewcommand*{\Re}{\operatorname{Re}}
+\renewcommand*{\Im}{\operatorname{Im}}
+\newcommand*{\Ln}{\operatorname{Ln}}
+\newcommand*{\argu}{\operatorname{arg}}
 \renewcommand{\mod}{\text{mod\,}}
 
 \definecolor{greeny}{rgb}{0,.39,0}

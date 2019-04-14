@@ -2,6 +2,147 @@
 
 \subsection{Unendliche Reihen}
 
+\begin{bemerkung}{Unendliche Reihe}{S. 39}
+  Die mit einer komplexen Zahlenfolge $(z_n)_{n \geq 0}$ gebildete Partialsummenfolge
+  \begin{align}
+    s_n \coloneqq \sum_{k=0}^n z_k = z_0 + z_1 + \cdots + z_n, \quad n \geq 0 ,
+  \end{align}
+  heißt \begriff{unendliche Reihe}, sie wird mit
+  \begin{align}
+    \sum_{k=0}^\infty z_k \quad \text{ oder } \quad z_0 + z_1 + z_2 + \cdots
+  \end{align}
+  bezeichnet.
+\end{bemerkung}
+
+\begin{bemerkung}{Konvergenz, Divergenz}{S. 39}
+  Man sagt, die Reihe \begriff{konvergiert} gegen $s \in \C$, bzw. sie hat die \begriff{Summe $s \in \C$}, und man schreibt
+  \begin{align}
+    \sum_{k=0}^\infty z_k = s ,
+  \end{align}
+  wenn
+  \begin{align}
+    \lim_{n \to \infty} s_n = \lim_{n \to \infty} (z_0 + z_1 + z_2 + \cdots) = s .
+  \end{align}
+  Die Reihe (\glqq Summe\grqq) \begriff{divergiert}, wenn sie nicht konvergiert.
+\end{bemerkung}
+
+\begin{bemerkung}{Absolute Konvergenz}{S. 39}
+  Die Reihe $\displaystyle \sum_{k=0}^\infty z_k = z_0 + z_1 + z_2 + \cdots$ heißt \begriff{absolut konvergent}, wenn die reelle Reihe der Beträge $\displaystyle \sum_{k=0}^\infty |z_k|$ konvergiert.
+\end{bemerkung}
+
+\begin{satz}{S. 39}
+  Eine absolut konvergente Reihe ist auch konvergent:
+  \begin{align}
+    \sum_{k=0}^\infty |z_k| \quad \text{konvergiert} \qquad \Rightarrow \qquad \sum_{k=0}^\infty z_k \quad \text{konvergiert.}
+  \end{align}
+\end{satz}
+
+\begin{satz}[Majorantenkriterium]{S. 40}
+  Es gelte $|z_k| \leq b_k$ für $k \in \N_0$. Dann gilt:
+  \begin{align}
+    \sum_{k=0}^\infty bk \quad \text{konvergent} \qquad \Rightarrow \qquad \sum_{k=0}^\infty z_k \quad \text{absolut konvergent.}
+  \end{align}
+\end{satz}
+
+\begin{satz}[Quotientenkriterium]{S. 40}
+  Es gelte $z_k \neq 0$ für $k \geq k_0$. Dann folgt:
+  \begin{enumerate}[label=\alph*)]
+    \item $\displaystyle \lim_{k \to \infty} \left| \frac{z_{k+1}}{z_k} \right| < 1 \qquad \Rightarrow \qquad \sum_{k=0}^\infty z_k \quad$ absolut konvergent,
+    \item $\displaystyle \lim_{k \to \infty} \left| \frac{z_{k+1}}{z_k} \right| > 1 \qquad \Rightarrow \qquad \sum_{k=0}^\infty z_k \quad$ divergent.
+  \end{enumerate}
+\end{satz}
+
+\begin{bemerkung}{Geometrische Reihe}{S. 40}
+  Wie im Reellen gilt für $q \in \C$ mit $|q| < 1$:
+  \begin{align}
+    \sum_{k=0}^n q^k = \frac{1 - q^{n+1}}{1-q}
+  \end{align}
+  und damit
+  \begin{align}
+    \sum_{k=0}^\infty q^k = \frac{1}{1-q}
+  \end{align}
+\end{bemerkung}
+
+
+
 \subsection{Potenzreihen}
 
+\begin{bemerkung}{Potenzreihe}{S. 40}
+  Eine Reihe der Form
+  \begin{align}
+    \sum_{k=0}^\infty a_k \cdot (z-z_0)^k \label{eq:potenzreihe}
+  \end{align}
+  mit $a_k, z_0, z \in \C$ heißt \begriff{Potenzreihe} mit \begriff{Zentrum $z_0$} oder \begriff{Entwicklungspunkt $z_0$} und \begriff{Koeffizienten $a_k$}.\\
+  \ \\
+  \textbf{Achtung}: Es dürfen nur nichtnegative Potenzen von $z - z_0$ auftreten!
+\end{bemerkung}
+
+\begin{bemerkung}{Konvergenzrdius}{S. 40}
+  Wie im Reellen zeigt man, dass für eine Potenzreihe \eqref{eq:potenzreihe} nur die folgenden drei Fälle auftreten:
+  \begin{enumerate}
+    % \item $\displaystyle \sum_{k=0}^\infty a_k \, (z-z_0)^k$ konvergiert absolut für alle $z \in \C$.
+    % \item $\displaystyle \sum_{k=0}^\infty a_k \, (z-z_0)^k$ konvergiert nur für $z = z_0$.
+    % \item Es gibt eine positive Zahl $R$, so dass $\displaystyle \sum_{k=0}^\infty a_k \, (z-z_0)^k$ für alle $z$ mit $|z - z_0| < R$ absolut konvergiert und für $|z - z_0| > R$ divergiert.
+    %   Für $|z - z_0| = R$ kann Konvergenz oder Divergenz vorliegen.
+    \item Die Potenzreihe konvergiert absolut für alle $z \in \C$.
+    \item Die Potenzreihe konvergiert nur für $z = z_0$.
+    \item Es gibt eine positive Zahl $R$, so dass die Potenzreihe für alle $z$ mit
+      \begin{itemize}
+        \item $|z - z_0| < R$ absolut konvergiert,
+        \item $|z - z_0| > R$ divergiert,
+        \item $|z - z_0| = R$ konvergiert oder divergiert (auch gemischt möglich).
+      \end{itemize}
+  \end{enumerate}
+  Die Zahl $R$ heißt \begriff{Konvergenzradius} der Reihe und $\{ z \in \C : \ |z - z_0| = R \}$ der \begriff{Konvergenzkreis}.
+  Zur Vermeidung von Fallunterscheidungen definiert man im Fall 1 den Konvergenzradius $R = \infty$ und im Fall 2 den Konvergenzradius $R = 0$.
+\end{bemerkung}
+
+\begin{bemerkung}{Berechnung Konvergenzrdius}{S. 41}
+  Zur Berechnung des Konvergenzradius $R$ ist häufig das Quotienten oder Wurzelkriterium anwendbar:
+  \begin{align}
+    R &= \lim_{k \to \infty} \left| \frac{a_k}{a_{k+1}} \right| \in [0, \infty],\label{eq:R1}\\
+    R &= \frac{1}{\displaystyle \limsup_{k \to \infty} \sqrt[k]{\left| a_k \right|}} \in [0, \infty].\label{eq:R2}
+  \end{align}
+  Der Grenzwert \eqref{eq:R1} existiert nicht immer.
+  Der größte Häufungswert \eqref{eq:R2} einer Folge existiert jedoch immer.
+\end{bemerkung}
+
+
+
 \subsection{Gleichmäßige Konvergenz}
+
+\begin{bemerkung}{Gleichmäßige Konvergenz}{S. 42}
+  $\left( f_n(z) \right)$ konvergiert auf $D \subseteq \C$ \begriff{gleichmäßig} gegen die \begriff{Grenzfunktion} $f(z)$, wenn es zu jedem beliebig kleinen Radius $\varepsilon > 0$ einen für alle $z \in D$ gemeinsamen Index $N(\varepsilon)$ gibt, so dass für $n \geq N(\varepsilon)$ sämtliche Funktionswerte $f_n(z)$ in die $\varepsilon$-Umgebung von $f(z)$ fallen:
+  \begin{align}
+    \left| f_n(z) - f(z) \right| \leq \varepsilon \quad \text{ für alle } z \in D,\ n \geq N(\varepsilon) .
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{Punktweise Konvergenz}{S. 42}
+  Bei \begriff{punktweiser Konvergenz} ist die \glqq Konvergenzgeschwindigkeit\grqq\ evtl. von Punkt zu Punkt verschieden.
+  Bei punktweiser Konvergenz gilt:
+  \begin{align}
+    \left| f_n(z) - f(z) \right| \leq \varepsilon \quad \text{ für alle } z \in D,\ n \geq N(\varepsilon, \textcolor{blue}{z}) .
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{Sätzle: Gleichmäßige Konvergenz einer Potenzreihe}{S. 42}
+  Eine Potenzreihe \eqref{eq:potenzreihe} mit Konvergenzradius $R > 0$ ist in jeder abgeschlossenen Kreisscheibe $D$ innerhalb ihres Konvergenzkreises ($D \coloneqq \{ z:\ \left| z - z_0 \right| \leq r < R \}$) gleichmäßig konvergent.
+\end{bemerkung}
+
+\begin{bemerkung}{Eigenschaften bei gleichmäßiger Konvergenz einer Potenzreihe}{S. 42}
+  Für $\displaystyle s_n(z) \coloneqq \sum_{k=0}^\infty a_k \, (z - z_0)^k$ und $\displaystyle s(z) \coloneqq \sum_{k=0}^\infty a_k \, (z - z_0)^k$ gilt:
+  \begin{align}
+    \left| s_n(z) - s(z) \right| \leq \varepsilon \quad \text{ für alle } z \in D,\ n \geq N(\varepsilon) .
+  \end{align}
+  Gleichmäßige Konvergenz garantiert die Eigenschaften der \begriff{Grenzfunktion}:
+  \begin{align}
+    s(z) \coloneqq \sum_{k=0}^\infty a_k \, (z - z_0)^k , \quad | z - z_0 | < R .
+  \end{align}
+  Insbesondere ist deshalb $s(z)$ in der Menge $\{ z:\ | z - z_0 | < R \}$ \begriff{stetig}.
+  Die Stetigkeit einer Potenzreihe in $z^*$ können wir auch wie folgt schreiben:
+  \begin{align}
+    \lim_{z \to z^*} s(z) = s(z) = \sum_{n=0}^\infty a_n \, (z^* - z_0)^n .
+  \end{align}
+  Alle komplexen Funktionen, die über Potenzreihen definiert sind, sind stetig.
+\end{bemerkung}

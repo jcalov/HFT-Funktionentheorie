@@ -1,9 +1,180 @@
 \section{Anwendungen der Cauchy-Integralformel}
 
+
+
 \subsection{Die Taylor-Reihe}
+
+\begin{satz}{S. 61}
+  Es sei $a \in \C$ und $w \neq a$.
+  Dann gilt
+  \begin{align}
+    |w - a| > |z - a| \quad & \Rightarrow &\frac{1}{w-z} = \sum_{k=0}^\infty \frac{(z-a)^k}{(w-a=^{k+1})} , \\
+    && (\text{Potenzreihe bzgl. } z) \notag \\
+    |w - a| < |z - a| \quad & \Rightarrow &\frac{1}{w-z} = - \sum_{k=0}^\infty \frac{(w-a)^k}{(z-a=^{k+1})} . \\
+    && (\text{keine Potenzreihe bzgl. } z) \notag
+  \end{align}
+\end{satz}
+
+\begin{bemerkung}{Bemerkung}{S. 61}
+  Eine analytische Funktion $f$ ist beliebig oft differenzierbar und (lokal) immer durch eine Taylor-Reihe darstellbar.
+\end{bemerkung}
+
+\begin{satz}[Taylor-Reihe]{S. 62}
+  \label{satz:6_2}
+  Jede im Gebiet $G$ analytische Funktion $f$ besitzt innerhalb jeder $r$-Um\-ge\-bung $K_r(a)$ (vgl. Def. \ref{def:1_2}, S. \pageref{def:1_2}), die ganz in $G$ liegt, die Potenzreihendarstelleng (\begriff{Taylor-Entwicklung})
+  \begin{align}
+    f(z) = \sum_{k=0}^\infty \frac{f^{(k)}(a)}{k!} \, (z - a)^k, \qquad z \in K_r(a);
+  \end{align}
+  insbesondere ist $f$ in $G$ beliebig oft differenzierbar mit den Ableitungen (\begriff{verallgemeinerte Cauchy-Integralformeln})
+  \begin{align}
+    f^{(n)}(z) =  \frac{n!}{2 \pi i} \oint_{|w-a|=\rho} \frac{f(w)}{(w-z)^{n+1}} \, dw, \qquad |w-a| < \rho < r, n \in \N_0 .
+  \end{align}
+\end{satz}
+
+\begin{bemerkung}{Folgerung}{S. 62}
+  Ist $f$ in ganz $\C$ analytisch (also $G = \C$), so hat die Taylor-Reihe den Konvergenzradius $R = \infty$.
+\end{bemerkung}
+
+\begin{bemerkung}{Regel von l'Hospital}{S. 63}
+  Sind $f$ und $g$ analytische Funktionen mit $f(z_0) = g(z_0) = 0$ und gilt $g'(z_0) \neq 0$, so folgt
+  \begin{align}
+    \lim_{z \to z_0} \frac{f(z)}{g(z)} = \frac{f'(z_0)}{g(z_0)} .
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{Bemerkung}{S. 63}
+  Ist $R$ der Konvergenzradius der Taylor-Reihe von $f$, so befindet sich auf dem Rand des Konvergenzkreises immer eine Stelle, an der $f$ nicht differenzierbar ist (\glqq Singularität\grqq).
+  Für die Funktion $\Ln(1+z)$ ist diese Singularität bei $-1$.
+\end{bemerkung}
+
+\begin{definition}{S. 64}
+  \label{def:6_1}
+  Man sagt, eine analytische Funktion habe eine Nullstelle $a$ der \begriff{Ordnung} $m$, wenn gilt
+  \begin{align}
+    f(z) = (z - a)^m \cdot f_1(z) \quad \text{in einer Umgebung } K_r(a)
+  \end{align}
+  mit einer analytischen Funktion $f_1$, für die gilt $f_1(a) \neq 0$.
+  Dies ist gleichbedeutend mit
+  \begin{align}
+    f(a) = f'(a) = \cdots = f^{(m-1)}(a) = 0, \quad f^{(m)}(a) \neq 0 .
+  \end{align}
+\end{definition}
+
+\begin{satz}[Identitätssatz]{S. 64}
+  \label{satz:6_3}
+  Für analytische Funktionen $f, g: G \to \C$ auf einem Gebiet $G$ sind äquivalent:
+  \begin{enumerate}[label=\alph*)]
+    \item $f(z) = g(z)$ für alle $z \in G$
+    \item $f(z_n) = g(z_n)$ für alle Punkte $(z_n)$ einer unendlichen Folge mit verschiedenen Folgengliedern und Häufungswert $a$ in $G$.
+  \end{enumerate}
+\end{satz}
+
+
 
 \subsection{Der Fundamentalsatz der Algebra}
 
+\begin{satz}[Satz von Liouville]{S. 65}
+  \label{satz:6_4}
+  Ist $f$ auf ganz $\C$ analytisch und beschränkt ($|f(z)| \leq M$ für alle $z \in \C$), so ist $f$ eine konstante Funktion: $f(z) =$ const.
+\end{satz}
+
+\begin{satz}[Fundamentalsatz der Algebra]{S. 66}
+  Jedes nichtkonstante Poylnom
+  \begin{align}
+    p(z) = a_m \, z^n + \cdots + a_1 \, z + a_0, \quad n \geq 1, a_n \neq 0
+  \end{align}
+  hat in $\C$ genau $n$ Nullstellen, wobei wir eine Nullstelle der Ordnung $m$ (vgl. Def. \ref{def:6_1}) $m$-mal zählen.
+\end{satz}
+
+
+
 \subsection{Mittelwerteigenschaft und Maximumprinzip}
 
+\begin{bemerkung}{Mittelwerteigenschaft}{S. 66}
+  Ist $f: G \to \C$ analytisch, $G$ ein Gebiet, so gilt gemäß Cauchy-Integralformel (Satz \ref{satz:cauchy_integralformel}):
+  \begin{align}
+    f(z) = \frac{1}{2 \pi i} \oint_{|w-z|=\rho} \frac{f(w)}{w-z} \, dw .
+  \end{align}
+  Schreiben wir den Kreis $|w-z|=\rho$ in der Form $C = \{ w : w = z + \rho \, e^{it}, \ t \in [0, 2 \pi) \}$, so folgt:
+  \begin{align}
+    f(z) &= \frac{1}{2 \pi i} \int_0^{2 \pi} \frac{f \left( z + \rho \, e^{it} \right)}{z + \rho \, e^{it}-z} \cdot i \cdot \rho \, e^{it} \, dw \\
+    &= \frac{1}{2 \pi} \int_0^{2 \pi} f \left( z + \rho \, e^{it} \right) \, dt
+  \end{align}
+  Der Funktionswert $f(z)$ ist der mittlere Wert aller Funktionswerte\linebreak
+  $f \left( z + \rho \, e^{it} \right)$ auf der Kreislinie $C$ (\begriff{Mittelwerteigenschaft}).
+\end{bemerkung}
+
+\begin{satz}[Maximumprinzip]{S. 67}
+\label{satz:6_6}
+  Ist $G$ ein beschränktes Gebiet, $f: G \cup \partial G \to \C$ analytisch und nicht konstant, dann liegt jede Maximalstelle $z_0$ der Funktion $|f(z)|$ auf dem Rand von $G$ (und nicht im Innern von $G$), d.h. die Betragsfläche $z \to |f(z)|$ hat keine Gipfel im Innern des Gebiets.
+\end{satz}
+
+
+
 \subsection{Folgen analytischer Funktionen}
+
+\begin{lemma}{S. 68}
+  Es sei $f: G \to \C$ stetig, und für jede im Gebiet $G$ verlaufende einfach geschlossene (stückweise stetig differenzierbare) Kurve $C$, sie samt ihres Innern in $G$ liegt, gelte $\oint_C f(z) \, dz = 0$.
+  Dann ist $f$ analytisch in $G$.
+\end{lemma}
+
+\begin{satz}[Weierstraß]{S. 68}
+  \label{satz:6_7}
+  Ist $(f_n)$ eine gleichmäßig konvergente Folge analytischer Funktionen in dem Gebiet $G$, so ist auch die Grenzfunktion $f$ analytisch in $G$.
+  Es gilt dann
+  \begin{align}
+    \lim_{n \to \infty} f_n'(z) = f'(z) .
+  \end{align}
+\end{satz}
+
+\begin{satz}{S. 69}
+  \label{satz:6_8}
+  Ist $(f_n)$ eine gleichmäßig konvergente Folge analytischer Funktionen mit Grenzfunktion $f$ in dem Gebiet $G$, so gilt
+  \begin{align}
+    \lim_{n \to \infty} \int_C f_n(z) \, dz = \int_C f(z) \, dz \qquad (n \to \infty)
+  \end{align}
+  für jede stpckweise differenzierbare Kurve $C$ in $G$.
+\end{satz}
+
+\begin{bemerkung}{Bemerkung}{S. 69}
+  Da in Satz \ref{satz:6_8} $f(z) = \lim_{n \to \infty} f_n(z)$ gilt, können wir auch schreiben:
+  \begin{align}
+    \lim_{n \to \infty} \int_C f_n(z) \, dz = \int_C \lim_{n \to \infty} f_n(z) \, dz ,
+  \end{align}
+  falls die Funktionenfolge gleichmäßig konvergiert.
+\end{bemerkung}
+
+
+
+\subsection{Eigenschaften analytischer Funktionen (Zusammenfassung)}
+
+\begin{bemerkung}{Eigenschaften analytischer Funktionen}{S. 70}
+  Es sei $f: G \to \C$ analytisch, $G$ ein einfach zusammenhängendes Gebiet in $\C$ und $C$ eine einfach geschlossene Kurve in $G$.
+  Dann gilt:
+  \begin{enumerate}
+    \item \textbf{Cauchy-Integralsatz} (Satz \ref{satz:cauchy_integralsatz}):
+      \begin{align}
+        \oint_C f(z) \, dz = 0 .
+      \end{align}
+    \item $\displaystyle F(z) \coloneqq \int_{z_0}^z f(w) \, dw$ ist wegunabhängig (Satz \ref{satz:5_3}); $F'(z) = f(z)$.
+    \item \textbf{Cauchy-Integralformeln} (Sätze \ref{satz:cauchy_integralformel}, \ref{satz:6_2}):
+      \begin{align}
+        f^{(n)}(z) =  \frac{n!}{2 \pi i} \oint_{C} \frac{f(w)}{(w-z)^{n+1}} \, dw, \qquad n \in \N_0
+      \end{align}
+      für alle $z$ aus dem Inneren von $C$.
+    \item \textbf{Taylor-Entwicklung um $a \in G$} (Satz \ref{satz:6_2}):
+      \begin{align}
+        f(z) = \sum_{n=0}^\infty \frac{f^{(n)}(a)}{n!} \, (z - a)^n %, \qquad z \in K_r(a);
+      \end{align}
+      in jeder offenen Kreisscheibe $|z-a| < r$, die ganz in $G$ liegt.
+    \item Im Fall $G = \C$ gilt der \textbf{Satz von Liouville} (Satz \ref{satz:6_4}) für beschränkte, analytische Funktionen.
+    \item \textbf{Identitätssatz} (Satz \ref{satz:6_3})
+    \item \textbf{Mittelwerteigenschaft}:
+      \begin{align}
+        f(z) = \frac{1}{2 \pi} \int_0^{2 \pi} f \left( z + \rho \, e^{it} \right) \, dt \qquad z \in G .
+      \end{align}
+    \item \textbf{Maximumprinzip} (Satz \ref{satz:6_6}): Ist $f$ nicht konstant, so nimmt $|f|$ das Maximum auf $\partial G$ an (falls $G$ beschränkt).
+    \item \textbf{Identitätssatz} (Satz \ref{satz:6_3})
+    \item \textbf{Konvergenzsätze} (Sätze \ref{satz:6_7}, \ref{satz:6_8}): Ist $(f_n)$ eine gleichmäßig gegen $f$ konvergierende Folge analytische Funktionen, so konvergieren auch die ersten Ableitungen und die Kurvenintegrale der Funktionen $f_n$ gegen die erste Ableitung bzw. das Kurvenintegral von $f$.
+  \end{enumerate}
+\end{bemerkung}

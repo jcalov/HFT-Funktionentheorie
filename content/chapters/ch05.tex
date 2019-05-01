@@ -1,7 +1,142 @@
 \section{Integration}
 
+
+
 \subsection{Grundlagen}
+
+\begin{bemerkung}{Kurve / Weg}{S. 52}
+  Eine \begriff{Kurve} (oder ein \begriff{Weg}) $C$ in der komplexen Ebene wird in der Form
+  \begin{align}
+    z(t) = x(t) + i \, y(t) \qquad \text{mit } t \in [a; b] \subseteq \R
+  \end{align}
+  dargestellt.
+  Stetigkeit und Differenzierbarkeit beziehen sich dabei auf die Funktionen $x(t)$ und $y(t)$.
+  Es gilt
+  \begin{align}
+    z'(t) = x'(t) + i \, y'(t) .
+  \end{align}
+\end{bemerkung}
+
+\begin{definition}[Kurvenintegral]{S. 52}
+  \label{def:Kurvenintegral}
+  Es sei $G \subseteq \C$ ein Gebiet, $f: G \to \C$ stetig und durch $z(t)$, $t \in [a,b]$ sei eine \begriff{stetig differenzierbare} Kurve $C$ gegeben.
+  Dann heißt
+  \begin{align}
+    \int_C f(z) \, dz
+    &\coloneqq \int_a^b \underbrace{ f(z(t)) \cdot z'(t)}_{\in \C} \, dt \\
+    &\coloneqq \int_a^b \Re(f(z(t)) \cdot z'(t)) \, dt + i \int_a^b \Im(f(z(t)) \cdot z'(t)) \, dt
+  \end{align}
+  das \begriff{Kurvenintegral} von $f$ längs $C$.
+  Für eine Kurve $C$, die aus endlich vielen stetig differenzierbaren Kurvenstücken $C_1, \dots, C_n$ besteht, definiert man
+  \begin{align}
+  \int_C f(z) \, dz \coloneqq \int_{C_1} f(z) \, dz + \cdots + \int_{C_n} f(z) \, dz .
+  \end{align}
+\end{definition}
+
+\begin{bemerkung}{Kurvenintegral, einfach geschlossene Kurve}{S. 52}
+  Ist $C$ eine geschlossene Kurve ohne Doppelpunkte, die im mathematisch positiven Sinn durchlaufen wird (das Innere liegt links in Durchlaufrichtung), so nennt man $C$ \begriff{einfach geschlossen} und schreibt
+  \begin{align}
+    \oint_C f(z) \, dz
+  \end{align}
+  für das Kurvenintegral.
+  Bei einem Kreis mit $z(t) = a + r\, e^{it}$, $t \in [0, 2\pi)$ schreibt man
+  \begin{align}
+    \oint_{|z-a|=r} f(z) \, dz .
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{Das Fundematalintegral}{S. 52}
+  Ein zentraler Baustein der Funktionentheorie ist das \begriff{Fundamentalintegral}, das wichtigste Integral der Analysis!
+  Für $a \in \C$, $r > 0$ gilt:
+  \begin{align}
+    \oint_{|z-a|=r} (z-a)^m \, dz &= 0, &\text{falls } m \in \Z, m \neq -1 \\
+    \oint_{|z-a|=r} \frac{1}{z-a} \, dz &= 2 \pi i & (m = -1)
+  \end{align}
+  Berechnung des Integrals im Skript, Seiten 52-53.
+\end{bemerkung}
+
+\begin{satz}{S. 54}
+  Aus Definition \ref{def:Kurvenintegral} ergeben sich die folgenden Regeln:
+  \begin{enumerate}[label=\alph*)]
+    \item \textbf{Linearität}: Mit $a, b \in \C$ gilt
+      \begin{align}
+        \int_C \left[ a \, f(z) + b \, g(z) \right] \, dz = a \int_C f(z) \, dz + b \int_C g(z) \, dz
+      \end{align}
+    \item \textbf{Additivität bei zusammengesetzten Wegen}: $C = C_1 \cup \cdots \cup C_n$
+      \begin{align}
+        \int_C f(z) \, dz = \sum_{k=1}^n \int_{C_k} f(z) \, dz
+      \end{align}
+    \item \textbf{Abhängigkeit der Orientierung}: Für die zu $C$ entgegengesetzt durchlaufende Kurve $C*$ gilt
+      \begin{align}
+        \int_{C*} f(z) \, dz = - \int_{C} f(z) \, dz
+      \end{align}
+    \item \textbf{Abschätzung}:
+      \begin{align}
+        \left| \int_{C} f(z) \, dz \right| = \leq \max_{z \in \C} \left| f(z) \right| \cdot (\text{Länge von } C)
+      \end{align}
+  \end{enumerate}
+\end{satz}
+
+
 
 \subsection{Der Cauchy-Integralsatz}
 
+\begin{satz}[Cauchy-Integralsatz, Hauptsatz der Funktionentheorie]{S. 55}
+  Für jede analytische Funktion $f: G \to \C$ auf einem einfach zusammenhängenden Gebiet $G$ und für jede stückweise stetig differenzierbar einfach geschlossene Kurve $C$ in $G$ gilt
+  \begin{align}
+    \oint_C f(z) \, dz = 0
+  \end{align}
+\end{satz}
+
+\begin{satz}[Wegunabhängigkeit des Integrals]{S. 57}
+  Es sei $G \subseteq \C$ einfach zusammenhängend, $f: G \to \C$ analytisch.
+  Dann gilt für zwei Punkte $z_0, z_1 \in G$ und zwei beliebige (stückweise stetig differenzierbare) Kurven $C_1$ und $C_2$ in $G$, die von $z_0$ nach $z_1$ führen:
+  \begin{align}
+    \int_{C_1} f(z) \, dz = \int_{C_2} f(z) \, dz
+  \end{align}
+\end{satz}
+
+\begin{satz}[Stammfunktion mittels Integral]{S. 58}
+  Es sei $G \subseteq \C$ ein einfach zusammenhängendes Gebiet, $f: G \to \C$ analytisch, $Z_0 \in G$ fest gewählt und $z \in G$ beliebig.
+  Ist $C$ irgendeine (stückweise stetig differenzierbare) Kurve von $z_0$ nach $z$ in $G$, so ist das wegunabhängige Integral
+  \begin{align}
+    I(z) \coloneqq \int_{z_0}^z f(w) \, dw \coloneqq \int_C f(w) \, dw
+  \end{align}
+  eine Stammfunktion von $f: I'(z) = f(z)$ für alle $z \in G$.
+\end{satz}
+
+\begin{bemerkung}{Bemerkung}{S. 58}
+  Wie im Reellen gilt: zwei Stammfunktionen $F_1$ und $F_2$ von $f$ unterscheiden sich nur durch eine Konstante, also:
+  \begin{align}
+    F_1'(z) = F_2'(z) = f(z)
+    \quad \Rightarrow \quad
+    F_1(z) = F_2(z) + c, \quad c \in \C
+  \end{align}
+  Damit ergibt sich: Ist $F$ eine \textbf{beliebige} Stammfunktion von $f$, so folgt:
+  \begin{align}
+    \int_{z_0}^z f(w) \, dw = I(z) = F(z) + c .
+  \end{align}
+  Wegen $\displaystyle 0 = \int_{z_0}^{z_0} f(w) \, dw = F(z_0) + c$ folgt $c = -F(z_0)$, d.h.:
+  \begin{align}
+    \int_{z_0}^z f(w) \, dw = F(z) - F(z_0)
+  \end{align}
+\end{bemerkung}
+
+
+
 \subsection{Die Cauchy-Integralformel}
+
+\begin{satz}{S. 59}
+  Ist $G$ nicht einfach zusammenhängend (mit \glqq Löchern\grqq ) und $f$ analytisch auf $G$, dann gilt für je zweifach geschlossene Kurven $C_1$ und $C_2$ aus $G$, die dieselbe Ausnahmemenge (\glqq Löcher\grqq ) in gleicher Richtung einmal umlaufen:
+  \begin{align}
+    \oint_{C_1} f(z) \, dz = \oint_{C_2} f(z) \, dz .
+  \end{align}
+\end{satz}
+
+\begin{satz}{Cauchy-Integralformel}{S. 60}
+  Es sei $G \subseteq \C$ ein Gebiet, $F: G \to \C$ analytisch, $C$ eine einfach geschlossene Kurve in $G$, deren Inneres danz in $G$ liegt.
+  Dann gilt für alle $z$ im Innern von $C$:
+  \begin{align}
+    f(z) = \frac{1}{2 \pi i} \oint_C \frac{f(w)}{w-z} \, dw
+  \end{align}
+\end{satz}

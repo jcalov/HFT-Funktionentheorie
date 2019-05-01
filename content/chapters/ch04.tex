@@ -1,11 +1,143 @@
 \section{Differentiation, analytische Funktionen}
 
+
+
 \subsection{Definition und Rechenregeln}
 
-\subsection{Die Cauchy-Riemann-Differenzialgleichungen}
+\begin{definition}{S. 43}
+  Sei $G \subseteq \C$ ein Gebiet und $f:\ G \to \C$.
+  $f$ heißt in $z_0 \in G$ \begriff{komplex differenzierbar}, wenn der Grenzwert
+  \begin{align}
+    \frac{df}{dz} (z_0) \coloneqq f'(z_0) \coloneqq \lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0}
+  \end{align}
+  im Sinne von Definition \ref{def:2_1} existiert.
+  $f'(z_0)$ heißt \begriff{Ableitung} von $f$ an der Stelle $z_0$.
+  $f:\ g \to \C$ heißt \begriff{analytisch} (oder \begriff{holomorph}), wenn $f'(z)$ für jedes $z \in G$ existiert.
+\end{definition}
+
+\begin{bemerkung}{Bemerkungen, Rechenregeln}{S. 43}
+  \begin{enumerate}
+    \item Der Grenzwert des Differenzenquotienten muss bei jeder Annäherung von $z$ an $z_0$ existieren und gleich $f'(z_0)$ sein.
+      Andernfalls ist die Funktion an $z_0$ nicht differenzierbar.
+    \item Differenzierbare Funktionen sind stetig.
+    \item Sind $f$ und $g$ differenzierbar (bzw. analytisch), so sind auch die Funktionen $f \pm g$, $f \cdot g$, $\displaystyle \frac{f}{g}$ (für $g(z) \neq 0$) und $f \circ g$ differenzierbar (bzw. analytisch), und es gelten die folgenden Rechenregeln:
+    \begin{enumerate}
+      \item Linearität:
+        \begin{align}
+          \left( a \, f + b \, g\right)' = a \, f' + b \, g'
+        \end{align}
+      \item Produktregel:
+        \begin{align}
+          \left( f \cdot g\right)' = f' \cdot g + f \cdot g'
+        \end{align}
+      \item Quotientenregel:
+        \begin{align}
+          \left( \frac{f}{g} \right)' = \frac{f' \cdot g - f \cdot g'}{g^2}
+          \intertext{insbesondere}
+          \left( \frac{1}{g} \right)' = - \frac{g'}{g^2}
+        \end{align}
+      \item Kettenregel:
+        \begin{align}
+          \big( f \left( g \right) \big)' = f'(g) \cdot g'
+        \end{align}
+    \end{enumerate}
+  \end{enumerate}
+\end{bemerkung}
+
+\begin{satz}[Potenzreihen sind analytisch und unendlich oft diff.bar]{S. 45}
+  Eine Potenzreihe $\displaystyle f(z) = \sum_{k=0}^\infty a_k \, (z - z_0)^k$ mit Konvergenzradius $R > 0$ stellt im Inneren des Konvergenzkreises eine analytische Funktion dar.
+  \begin{align}
+    f(z) = \sum_{k=0}^\infty a_k \, (z - z_0)^k
+  \end{align}
+  ist analytisch in $K_R (z_0) = \{ z: \ |z - z_0| < R \}$.
+  Die Ableitung erhält man durch gliedweise Differentiation:
+  \begin{align}
+    f'(z) = \sum_{\textcolor{blue}{k=1}}^\infty k \, a_k \, (z - z_0)^{k-1}
+  \end{align}
+  Die abgeleitete Reihe ist wieder eine Potenzreihe und hat denselben Konvergenzradius $R$.
+  Das Ableiten kann also beliebig oft wiederholt werden.
+  Die Koeffizienten lassen sich aus der Funktion $f$ berechnen und sind daher durch $f$ eindeutig bestimmt:
+  \begin{align}
+    a_n = \frac{1}{n!} f^{(n)}(z_0), \quad n = 0, 1, 2, \dots\ .
+  \end{align}
+\end{satz}
+
+
+
+\subsection{Die Cauchy-Riemann-Differentialgleichungen}
+
+\begin{satz}[Cauchy-Riemann-Differentialgleichungen]{S. 47}
+  \label{satz:4_2}
+  Ist $f : \C \to \C$ differenzierbar an $z_0 = x_0 + i \, y_0$ und gilt
+  \begin{align}
+    f(z) = f(x,y) = u(x,y) + i \, v(x, y) ,
+  \end{align}
+  so erfüllen $u$ und $v$ die \begriff{Cauchy-Riemann-Differentialgleichungen} an der Stelle $(x_0, y_0)$:
+  \begin{align}
+    u_x(x_0, y_0) &=   v_y(x_0, y_0) ,\\
+    u_y(x_0, y_0) &= - v_x(x_0, y_0) .
+  \end{align}
+  Ist $f$ differenzierbar für alle $z \in G$, wobei $G$ eine offene Menge in $\C$ ist, so gelten diese Differentialgleichungen in ganz $G$.
+\end{satz}
+
+\begin{bemerkung}{Folgerung aus Satz \ref{satz:4_2}: Funktionen mit Ableitung $0$ sind konstant}{S. 47}
+  Es sei $f : G \to \C$ ein in dem Gebiet $G \subseteq \C$ analytische Funktion mit $f'(z) = 0$ für alle $z \in G$.
+  Dann gilt: $f(z) =$ const.
+\end{bemerkung}
+
+
 
 \subsection{Geometrische Deutung der Ableitung}
 
+\begin{satz}{S. 47}
+  Ist $f : G \to \C$ eine analytische Funktion mit $f'(z) \neq 0$ in dem Gebiet $G$, dann ist die Abbildung $f : G \to \C$ in allen Punkten $z_0 \in G$ \begriff{lokal konform} (d.h. \begriff{winkeltreu} und \begriff{orientierungstreu}), d.h. der Schnittwinkel zwischen zwei glatten Kurven durch $z_0 \in G$ ist samt Drehsinn der gleiche wie für die beiden Bildkurven durch $f(z_0)$.
+\end{satz}
+
+
+
 \subsection{Das komplexe Potenzial}
 
+
+
+
+
 \subsection{Harmonische Funktionen}
+
+\begin{bemerkung}{Harmonische Funktionen}{S. 50}
+  Ist $f(z) = u(x,y) + i \, v(x,y)$ eine analytische Funktion, so gilt aufgrund der Cauchy-Riemann-Differentialgleichungen
+  \begin{align}
+    u_x &= v_y\\
+    u_y &= - v_x .
+  \end{align}
+  Es folgt $u_{xx} = v_{yx}$ und $u_{yy} = -v_{xy}$.
+  Wegen $v_{xy} = v_{yx}$ haben wir: $u_{xx} + u_{yy} = 0$.
+  Man schreibt dafür auch
+  \begin{align}
+    \Delta u &= u_{xx} + u_{yy} = 0
+  \end{align}
+  und nennt Funktionen dieser Eigenschaft \begriff{harmonisch}.
+  Es gilt auch
+  \begin{align}
+    \Delta v &= v_{xx} + v_{yy} = 0 .
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{}{S. 50}
+  Es sei nun $G \subseteq \C$ einfach zusammenhängend und es sei nur die Funktion $u(x,y)$ vorgegeben.
+  Gesucht ist die Funktion $v(x,y)$, sodass
+  \begin{align}
+    f(z) = u(x,y) + i \, v(x,y) \label{eq:harm_ana}
+  \end{align}
+  eine analytische Funktion ist.
+  Wir gehen wie folgt vor:
+  \begin{enumerate}
+    \item $u_x$ und $u_y$ berechnen
+    \item Aus dem Ansatz $v_y = u_x$ durch unbestimmte Integration nach $y$
+      \begin{align}
+      v = \int u_x \, dy + c(x)
+      \end{align}
+      bestimmen.
+    \item Nach $x$ differenzieren, $\displaystyle v_x = \frac{\partial}{\partial x} \left( \int u_x \, dy \right) + c'(x)$, dies mit $-u_y$ gleichsetzen und daraus $c(x)$ berechnen.
+    \item Zur analytischen Funktion \eqref{eq:harm_ana} zusammensetzen.
+  \end{enumerate}
+\end{bemerkung}

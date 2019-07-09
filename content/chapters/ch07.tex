@@ -1,5 +1,139 @@
 \section{Laurent-Reihen und Singularitäten}
 
+
 \subsection{Laurent-Reihen}
 
+\begin{satz}[Laurent-Reihen]{S. 72}
+  \label{satz:7_1}
+  Es sei $f$ im Kreisring $K_{r,R}(a) = \{ z : 0 \leq r < |z-a| < R \}$ analytisch, wobei $0 \leq r < r \leq \infty$.
+  Dann gilt:
+  \begin{enumerate}[label=\alph*)]
+    \item $f(z)$ lässt sich für alle $z \in K_{r,R}(a)$ als \begriff{Laurent-Reihe} schreiben:
+  \end{enumerate}
+  \vspace{-1em}
+  \begin{align}
+    f(z)
+      &= \sum_{n=-\infty}^{\infty} c_n \cdot (z-a)^n
+       \coloneqq \sum_{n=0}^{\infty} c_n \cdot (z-a)^n + \sum_{n=1}^{\infty} \frac{c_{-n}}{(z-a)^n}
+       \notag\\
+      &= \cdots
+        + \frac{c_{-2}}{(z-a)^2}
+        + \frac{c_{-1}}{z-a}
+        + c_0
+        + c_1 (z-a)
+        + c_2 (z-a)^2
+        + \cdots
+        .
+  \end{align}
+  \begin{enumerate}[label=\alph*)]
+    \item[b)] Die Koeffizienten $c_n$ sind eindeutig bestimmt durch ($n \in \Z$, $r < \rho < R$):
+      \begin{align}
+        \label{eq:koeff_c_n}
+        c_n = \frac{1}{2 \pi i} \oint_{|w-a| = \rho} \frac{f(w)}{(w-a)^{n+1}} \, dw .
+      \end{align}
+  \end{enumerate}
+\end{satz}
+
+% \begin{bemerkung}{Bemerkungen}{S. 72}
+%
+% \end{bemerkung}
+
+
+
 \subsection{Isolierte Singularitäten}
+
+\begin{bemerkung}{Isolierte Singularität, Hauptteil, Nebenteil}{S. 75}
+  Man nennt eine Singularität von $f$ \begriff{isoliert}, wenn $f$ an $z_0$ nicht definiert ist, aber in $\{ z : 0 < |z-z_0| < r \}$ analytisch ist.
+  Nach Satz \ref{satz:7_1} besitzt $f$ die Laurent-Entwicklung
+  \begin{align}
+    f(z)
+     &= \cdots
+       + \frac{c_{-2}}{(z-z_0)^2}
+       + \frac{c_{-1}}{z-z_0}
+       + c_0
+       + c_1 (z-z_0)
+       + c_2 (z-z_0)^2
+       + \cdots
+       \notag\\
+     &= \sum_{n=-\infty}^{\infty} c_n \cdot (z-z_0)^n
+     , \qquad 0 < |z-z_0| < r .
+     \label{eq:laurent}
+  \end{align}
+  In dieser Entwicklung nennt man
+  \begin{align*}
+    \sum_{n=1}^{\infty} \frac{c_{-n}}{(z-z_0)^n}
+    \quad
+    \text{den \begriff{Hauptteil} und}
+  \end{align*}
+  \begin{align*}
+    \sum_{n=0}^{\infty} c_n \cdot (z-z_0)^n
+    \quad
+    \text{den \begriff{Nebenteil} (oder analytischen Anteil).}
+  \end{align*}
+  Die Koeffizienten $c_n$ sind eindeutig bestimmt durch \eqref{eq:koeff_c_n}.
+\end{bemerkung}
+
+\begin{definition}{S. 75}
+  \label{def:7_1}
+  Die isolierte Singularität $z_0$ mit Laurent-Entwicklung \eqref{eq:laurent} heißt
+  \begin{enumerate}[label=\alph*)]
+    \item \begriff{hebbar}, wenn der Hauptteil verschwindet; d.h. wenn $c_{-n} = 0$ für alle $n \geq 1$,
+    \item \begriff{Pol der Ordnung $m$}, $m \geq 1$, wenn im Hauptteil $c_{-m} \neq 0$ und $c_{-n} = 0$ für alle $n > m$,
+    \item \begriff{wesentlich}, wenn im Hauptteil unendlich viele Koeffizienten $\neq~0$ sind.
+  \end{enumerate}
+\end{definition}
+
+\begin{bemerkung}{Isolierte Singularität, Hauptteil, Nebenteil}{S. 75}
+  Die Laurent-Reihe um eine isolierte Singularität $z_0$.
+  \begin{enumerate}[label=\alph*)]
+    \item $z_0$ ist hebbar, genau dann wenn gilt:
+      \begin{align}
+        f(z) = c_0 + c_1\,(z-z_0) + c_2\,(z-z_0)^2 + \cdots .
+      \end{align}
+    \item $z_0$ ist Pol der Ordnung $m$, genau dann wenn gilt:
+      \begin{align}
+        f(z)
+        &= \frac{c_{-m}}{(z-z_0)^m} + \cdots + \frac{c_{-1}}{z-z_0} + \text{analytisch} \quad (c_{-m} \neq 0) \\
+        &= \frac{1}{(z-z_0)^m} f_1(z), \quad f_1(z) \text{ analytisch in } z_0, \quad f_1(z_0) \neq 0
+      \end{align}
+    \item $z_0$ ist wesentlich, genau dann wenn gilt:
+      \begin{align}
+        f(z) = \sum_{n=1}^{\infty} \frac{c_{-n}}{(z-z_0)^n} + \text{analytisch}, \quad \text{unendlich viele } c_{-n} \neq 0.
+      \end{align}
+  \end{enumerate}
+\end{bemerkung}
+
+\begin{satz}[Hebbare Singularität]{S. 76}
+  \label{satz:7_2}
+  Eine isolierte Singularität $z_0$ ist genau dann hebbar, wenn gilt
+  \begin{align}
+    \left| f(z) \right| \leq C \quad \text{für } 0 \leq | z-z_0| \leq \varepsilon \qquad (*)
+  \end{align}
+  ($f$ ist beschränkt) für alle hinreichend kleinen $\varepsilon > 0$.
+\end{satz}
+
+\begin{satz}[Singularität mit Pol der Ordnung $m$]{S. 77}
+  \label{satz:7_3}
+  Eine isolierte Singularität $z_0$ ist genau dann ein Pol der Ordnung $m$, wenn die Funktion
+  \begin{align}
+    g(z) \coloneqq \frac{1}{f(z)} \ (z \neq z_0) \quad \text{mit} \quad g(z_0) \coloneqq 0
+  \end{align}
+  an $z_0$ eine Nullstelle der Ordnung $m$ besitzt.
+\end{satz}
+
+\begin{bemerkung}{Polstellen bei rationaler Funktion ohne gemeinsame Nullstellen }{S. 77}
+  Bei einer \textbf{rationalen} Funktion ohne gemeinsame Nullstellen von Zähler und Nenner kommen als Singularitäten nur \textbf{Polstellen} in Frage.
+\end{bemerkung}
+
+\begin{satz}[]{S. 77}
+  \label{satz:7_4}
+  Eine isolierte Singularität $z_0$ von $f$ ist genau dann ein Pol, wenn gilt
+  \begin{align}
+    \lim_{z \to z_0} |f(z)| = \infty .
+  \end{align}
+\end{satz}
+
+\begin{satz}[Satz von Picard]{S. 78}
+  \label{satz:7_5}
+  Ist $z_0$ eine wesentliche Singularität von $f$, so nimmt $f$ in \textbf{jeder} Umgebung von $z_0$ \textbf{jeden} Wert aus $\C$ (mit höchstens einer Ausnahme) als Funktionswert unendlich oft an.
+\end{satz}

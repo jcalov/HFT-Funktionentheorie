@@ -1,11 +1,98 @@
 \section{Residuentheorie}
 
+
 \subsection{Der Residuensatz}
+
+\begin{definition}[Residuum]{S. 79}
+  \label{def:8_1}
+  Der Koeefizient $c_{-1}$ in der Laurent-Reihe von $f$ heißt das \begriff{Residuum} von $f$ in $z_0$:
+  \begin{align}
+    \Res(f, z_0) \coloneqq c_{-1} = \frac{1}{2 \pi i} \oint_C f(z)\, dz .
+  \end{align}
+\end{definition}
+
+\begin{bemerkung}{Kurvenintegral mit Residuum berechnen}{S. 79}
+  Damit gilt:
+  \begin{align}
+    \oint_C f(z)\, dz = 2 \pi i \cdot \Res(f, z_0) .
+  \end{align}
+\end{bemerkung}
+
+\begin{satz}[Residuensatz]{S. 80}
+  \label{satz:8_1}
+  Es sei $f$ in dem Gebiet $G$ bis auf endlich viele isolierte Singularitäten $a_1, \dots, a_N$ analytisch und $C$ eine einfach geschlossene, positiv orientierte Kurve in $G$, die $a_1, \dots, a_N$ umschließt, aber selbst durch keine Singularität geht.
+  Dann gilt
+  \begin{align}
+    \oint_C f(z)\, dz = 2 \pi i \cdot \sum_{k=1}^N \Res(f, a_k) .
+  \end{align}
+\end{satz}
+
+
 
 \subsection{Methoden der Residuenberechnung}
 
+\begin{bemerkung}{A) Residuum aus der Laurent-Reihe ablesen}{S. 80}
+  Residuum aus der Laurent-Reihe ablesen:
+  \begin{align}
+    \Res(f, z_0) = c_{-1} .
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{B) Residuum ein einem einfachen Pol}{S. 80}
+  Das Residuum an einem einfachen Pol bestimmt man mit
+  \begin{align}
+    \Res(f, z_0) = \lim_{z \to z_0} (z-z_0) \cdot f(z) .
+  \end{align}
+  \textbf{Sonderfall:}\\
+  $f(z) = \frac{g(z)}{h(z)}$; $g$, $h$ analytisch, $z_0$ einfache Nullstelle von $h(z)$ (also $h(z_0) \neq 0$) und $g(z) \neq 0$.
+  $f$ hat einfachen Pol an $z_0$.
+  Dann gilt:
+  \begin{align}
+    \Res(f, z_0) = \frac{g(z_0)}{h'(z_0)} .
+  \end{align}
+\end{bemerkung}
+
+\begin{bemerkung}{C) Residuum ein einem mehrfachen Pol}{S. 80}
+  Das Residuum an einem mehrfachen Pol berechnet man mit
+  \begin{align}
+    \Res(f, z_0) = \left. \frac{1}{(m-1)!} \cdot \left( (z-z_0)^m \cdot f(z) \right)^{(m-1)} \right\vert_{z=z_0}
+  \end{align}
+\end{bemerkung}
+
+
+
 \subsection{Beispiele zum Residuensatz}
+\ S. 82
+
+
 
 \subsection{Berechnung reeller Integrale mit dem Residuensatz}
 
+\begin{satz}[]{S. 83}
+  \label{satz:8_2}
+  Es sei $f(x) = \frac{p(x)}{q(x)}$; $p$, $q$ \textbf{teilerfremde} Polynome; $\operatorname{Grad}(q) \geq \operatorname{Grad}(p)$; $q$ ohne \textbf{reelle} Nullstellen; $z_1, \dots z_N$ die komplexen Nullstellen des Polynoms $q(x)$ in der \textbf{oberen Halbebene} ($\Im(z)>0$).
+  Dann gilt:
+  \begin{align}
+    \int_{-\infty}^{\infty} f(x) \, dx = 2 \pi i \cdot \sum_{k=1}^N \Res(f, z_k) .
+  \end{align}
+\end{satz}
+
+
+
 \subsection{Meromorphe Funktionen}
+
+\begin{definition}[Meromorphe Funktion]{S. 87}
+  \label{def:8_2}
+  Es sei $G \subseteq \C$ ein Gebiet.
+  Eine Funktion $f : G \to \C$ heißt \begriff{meromorph}, wenn sie bis auf isolierte Polstellen analytisch in $G$ ist.
+\end{definition}
+
+\begin{satz}[Anzahlformel für Null- und Polstellen]{S. 87}
+  \label{satz:8_3}
+  Es sei $f : G \to \C$ meromorph und $C$ eine einfach geschlossene positiv orientierte Kurve, auf der keine Null- oder Polstellen von $f$ liegen.
+  Dann gilt:
+  \begin{align}
+    \frac{1}{2 \pi i} \oint_C \frac{f'(z)}{f(z)} dz = N_C - P_C ,
+  \end{align}
+  wobei $N_C$ die Anzahl der Nullstellen und $P_C$ die Anzahl der Polstellen von $f$ (jeweils mit Vielfachheit) im Inneren von $C$ bedeutet.
+\end{satz}

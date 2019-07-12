@@ -58,7 +58,33 @@ $\displaystyle \varphi$ & $\displaystyle \varphi$ & $\displaystyle \cos \varphi$
 \renewcommand{\arraystretch}{1}
 \end{minipage}
 
-\begin{minipage}{1.085\textwidth}
-  \centering
+\begin{minipage}{.9\textwidth}
+  \qquad\qquad
   \includegraphics[width=\linewidth]{content/figures/einheitskreis_15}
 \end{minipage}
+
+
+
+\subsection{Ableitungen}
+\textcolor{white}{dupsi}\\
+
+\renewcommand{\arraystretch}{2.718281828}
+\begin{tabular}{cccl}
+  \toprule
+  $f(z)$ & $f'(z)$ & Bereich & Bemerkung \\
+  \midrule
+  $z^n$ & $n \, z^{n-1}$, $\quad n\in\N$ & $\C$ & \\
+  $\quad a_n \, z^n + \cdots + a_1 \, z + a_1 \quad$
+   & $\quad n \, a_n \, z^{n-1} + \cdots + 2 \, a_2 \, z + a_1 \quad$
+   & $\C$
+   & \\
+  $\displaystyle\frac{a \, z + b}{c \, z + d}$ & $\displaystyle\frac{ad -bc}{(c \, z + d)^2}$ & $\C\setminus\left\{\frac{-d}{c}\right\}$ & Möbius-Transformation; Ableitung für $f(z)=\infty$ nicht definiert \\
+  $e^{az}$ & $a \, e^{az}$ & $\C$ & \\
+  $\sin z$ & $\cos z$ & $\C$ & \\
+  $\cos z$ & $-\sin z$ & $\C$ & \\
+  $\Ln z$ & $\displaystyle\frac{1}{z}$ & $\C \setminus \{ x: x \leq 0 \}$ & \\
+  $\sqrt{z}$ & $\displaystyle\frac{1}{2 \sqrt{z}}$ & $\C \setminus \{ x: x \geq 0 \}$ & Positive reelle Achse ansgenommen (anders als im Reellen)! \\
+  % $a$ & $a$ & $\C$ & \\
+  \bottomrule
+\end{tabular}
+\renewcommand{\arraystretch}{1}
